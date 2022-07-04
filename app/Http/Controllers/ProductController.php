@@ -38,7 +38,6 @@ class ProductController extends Controller
                 'product_id' => $product->id,
                 'number' => request('number')
             ]);
-            dd('mahdi');
             return redirect('/');
         }
     }
