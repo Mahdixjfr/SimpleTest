@@ -31,15 +31,19 @@ class ProductController extends Controller
 
     public function adding_to_cart(Product $product)
     {
-        $this->check_cart($product->id, UserId());
-        if ($this->check_number(request()->all(), $product->inventory) && $this->check_cart($product->id, UserId())) {
+        $number = request('number');
+        $this->check_number(request()->all(), $product->inventory);
+        if ($this->check_cart($product->id, UserId(), $number)) {
             Cart::create([
                 'user_id' => UserId(),
                 'product_id' => $product->id,
-                'number' => request('number')
+                'number' => $number
             ]);
-            return redirect('/');
-        }
+        };
+        $product->update([
+            'inventory' => $product->inventory - $number
+        ]);
+        return redirect('/');
     }
 
     public function check_number($request, $inventory)
@@ -47,17 +51,22 @@ class ProductController extends Controller
         $validated_data = Validator::make($request, [
             'number' => ['required', 'numeric', 'min:1', "max:$inventory"]
         ])->validated();
-
-        return true;
     }
 
-    public function check_cart($product_id, $user_id)
+    public function check_cart($product_id, $user_id, $number)
     {
-        $result = Cart::where('user_id', $user_id)->where('product_id', $product_id)->count();
-        if ($result == 0) {
+        $result = Cart::where('user_id', $user_id)->where('product_id', $product_id)->first();
+        if ($result->count() == 0) {
             return true;
         } else {
-            $this->update_cart();
+            $this->update_cart($result, $number);
         }
+    }
+
+    public function update_cart($obj, $number)
+    {
+        $obj->update([
+            'number' => $obj->number + $number
+        ]);
     }
 }
