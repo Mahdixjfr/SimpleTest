@@ -21,6 +21,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::prefix('product')->group(function () {
     Route::get('/{product}', [ProductController::class, 'product']);
     Route::get('/buy/{product}', [ProductController::class, 'buy']);
-    Route::post('/{product}', [ProductController::class, 'adding_to_cart']);
+    Route::post('/buy/{product}', [ProductController::class, 'adding_to_cart']);
+    Route::get('/cart', [Product::class, 'show_cart'])->name('cart');
 });
 Auth::routes();

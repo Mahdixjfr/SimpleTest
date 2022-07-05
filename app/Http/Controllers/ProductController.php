@@ -55,11 +55,11 @@ class ProductController extends Controller
 
     public function check_cart($product_id, $user_id, $number)
     {
-        $result = Cart::where('user_id', $user_id)->where('product_id', $product_id)->first();
+        $result = Cart::where('user_id', $user_id)->where('product_id', $product_id);
         if ($result->count() == 0) {
             return true;
         } else {
-            $this->update_cart($result, $number);
+            $this->update_cart($result->first(), $number);
         }
     }
 
