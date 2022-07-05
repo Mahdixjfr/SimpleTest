@@ -36,7 +36,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <form action="/product/{{$product->id}}" method="POST">
+                    <form action="/product/buy/{{$product->id}}" method="POST">
                         @method('POST')
                         @csrf
                         <input type="number" class="@error('number') is-invalid @enderror" name="number" value="1">
