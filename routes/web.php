@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
-use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +22,10 @@ Route::prefix('product')->group(function () {
     Route::get('/{product}', [ProductController::class, 'product']);
     Route::get('/buy/{product}', [ProductController::class, 'buy']);
     Route::post('/buy/{product}', [ProductController::class, 'adding_to_cart']);
-    Route::get('/cart', [Product::class, 'show_cart'])->name('cart');
+});
+Route::middleware('auth')->prefix('cart')->group(function () {
+    Route::get('/', [CartController::class, 'show']);
+    Route::delete('/{cart}', [CartController::class, 'delete']);
+    Route::post('/', [CartController::class, 'buy']);
 });
 Auth::routes();
