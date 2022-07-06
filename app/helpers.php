@@ -38,3 +38,11 @@ if (!function_exists('typePrice')) {
         }
     }
 }
+
+if (!function_exists('unformatNumber')) {
+    function unformatNumber($number)
+    {
+        $number =  mb_ereg_replace("[^0-9]", "", $number);
+        return $number;
+    }
+}
