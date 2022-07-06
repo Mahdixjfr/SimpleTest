@@ -19,6 +19,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <title>@yield('title')</title>
 </head>
 
 <body>
@@ -70,6 +72,7 @@
                                 </form>
                             </div>
                         </li>
+                        <li><a href="/cart">سبد خرید</a></li>
                         @endguest
                     </ul>
                 </div>

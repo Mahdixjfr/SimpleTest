@@ -1,25 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="{{ asset('js/bootstrap.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <title>Product</title>
-</head>
-
-<body>
-
+@extends('layouts.app')
+@section('title') Product @endsection
+@section('content')
+<div class="container">
     <h2>{{$product->name}}</h2>
-    <img src="" alt="">
     <table class="table">
         <thead class="table-dark">
             <tr>
@@ -42,6 +25,7 @@
             </tr>
         </tbody>
     </table>
-</body>
+</div>
+@endsection
 
 </html>

@@ -1,19 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <title>Cart</title>
-</head>
-
-<body>
+@section('title') Cart @endsection
+@section('content')
+<div class="container">
     <h2>Your Cart</h2>
     <table class="table">
         <thead class="table-dark">
@@ -39,15 +28,16 @@
             @endforeach
             <tr>
                 <td></td>
-                <td>{{$total}} مجموع</td>
+                <td>{{$total}} تومان</td>
             </tr>
         </tbody>
     </table>
     <form action="/cart" method="post">
         @method('post')
         @csrf
-        <button>خرید نهایی</button>
+        <button value="{{$total}}">خرید نهایی</button>
     </form>
-</body>
+</div>
+@endsection
 
 </html>
