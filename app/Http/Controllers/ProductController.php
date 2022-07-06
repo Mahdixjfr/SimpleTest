@@ -33,9 +33,9 @@ class ProductController extends Controller
     {
         $number = request('number');
         $this->check_number(request()->all(), $product->inventory);
-        if ($this->check_cart($product->id, UserId(), $number)) {
+        if ($this->check_cart($product->id, userId(), $number)) {
             Cart::create([
-                'user_id' => UserId(),
+                'user_id' => userId(),
                 'product_id' => $product->id,
                 'number' => $number
             ]);

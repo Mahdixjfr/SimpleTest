@@ -11,16 +11,17 @@ class CartController extends Controller
     public $total = 0;
     public function show()
     {
-        $cart = Cart::where('user_id', UserId())->orderBy('id', 'desc')->get();
+        $cart = Cart::where('user_id', userId())->orderBy('id', 'desc')->get();
         foreach ($cart as $buy) {
             $product = $buy->product()->first();
             $number = $buy->number;
             $this->total = $this->total + $product->price * $number;
             $this->list[] = ['id' => $buy->id, 'name' => $product->name, 'price' => $product->price, 'number' => $number];
-        }
+        };
+        // $total = number_format($this->total, 0, '.', ',');
         return view('Product/cart', [
             'list' => $this->list,
-            'total' => number_format($this->total, 0, '.', ',')
+            'total' => typePrice($this->total)
         ]);
     }
     public function delete(Cart $cart)
