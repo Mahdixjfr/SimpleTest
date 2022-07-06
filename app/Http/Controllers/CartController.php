@@ -21,7 +21,7 @@ class CartController extends Controller
         // $total = number_format($this->total, 0, '.', ',');
         return view('Product/cart', [
             'list' => $this->list,
-            'total' => typePrice($this->total)
+            'total' => number_format($this->total)
         ]);
     }
     public function delete(Cart $cart)
