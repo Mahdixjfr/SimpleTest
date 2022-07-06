@@ -17,18 +17,25 @@ class Product extends Model
         'description'
     ];
 
-    public function getPricesAttribute($value)
+    public function getPriceAttribute($value)
     {
-        if ($value > 999 && $value < 999999) {
-            $number = $value / 1000;
-            $number = number_format($number);
-            return $number . ' هزار';
-        } elseif ($value > 999999) {
-            $number = $value / 1000000;
-            $number = number_format($number);
-            return $number . ' میلیون';
-        } else {
-            return $value;
-        }
+        $price = number_format($value);
+        return $price;
+        // if ($value > 999 && $value < 999999) {
+        //     $number = $value / 1000;
+        //     $number = number_format($number);
+        //     return $number . ' هزار';
+        // } elseif ($value > 999999) {
+        //     $number = $value / 1000000;
+        //     $number = number_format($number);
+        //     return $number . ' میلیون';
+        // } else {
+        //     return $value;
+        // }
+    }
+
+    public function getInventory($value)
+    {
+        $inventory = number_format($value);
     }
 }
