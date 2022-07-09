@@ -28,4 +28,6 @@ Route::middleware('auth')->prefix('cart')->group(function () {
     Route::delete('/{cart}', [CartController::class, 'delete']);
     Route::post('/', [CartController::class, 'buy']);
 });
+
+Route::get('/delivered', [CartController::class, 'delivered']);
 Auth::routes();
