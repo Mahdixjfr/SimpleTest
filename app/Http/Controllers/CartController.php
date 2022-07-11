@@ -10,7 +10,7 @@ class CartController extends Controller
 {
     public $list = [];
     public $total = 0;
-    public $order = 0;
+    public $order = 1;
     public function show()
     {
         $cart = Cart::where('user_id', userId())->orderBy('id', 'desc')->get();
@@ -40,45 +40,30 @@ class CartController extends Controller
         $carts = Cart::where('user_id', userId())->get();
 
         foreach ($carts as  $cart) {
-            $this->addDelivered($cart->product_id, $this->order);
+            $this->addDelivered($cart->product_id, $cart->number);
         }
         Cart::where('user_id', UserId())->delete();
         return back();
     }
 
-    public function addDelivered($product_id)
+    public function addDelivered($product_id, $number)
     {
-        $result = Delivered::where('user_id', userId())->orderBy('order', 'desc');
-        if ($result->count() > 0) {
-            $this->order =  $result->first()->order + 1;
+        if ($result = $this->checkDElivered()) {
+            $this->order =  $result[0]->first()->order + 1;
         }
         Delivered::create([
             'user_id' =>  userId(),
+            'number' => $number,
             'order' => $this->order,
             'product_id' => $product_id
         ]);
     }
-
-    public function delivered()
-    {
-        $last_id_delivered = Delivered::where('user_id', userId())->orderBy('order', 'desc')->first()->order;
-
-        for ($i = 1; $i <= $last_id_delivered; $i++) {
-            $delivereds[]['products'] = Delivered::where('user_id', userId())->where('order', $i)->get();
-        }
-        // dd($delivereds);
-        foreach ($delivereds as  $value) {
-            foreach ($value['products'] as  $obj) {
-                $price = $obj->product()->price;
-            }
-        }
-        return view('delivered', compact('delivereds'));
-    }
 }
 
 
+
 $list = [
-    'obj1' => [
+    'order1' => [
         'products' => ['obj1', 'obj2'],
         'total' => 123123
     ],
