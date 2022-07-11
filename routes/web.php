@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\DeliveredController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/delivered', [DeliveredController::class, 'delivered'])->middleware('auth');
 
 Route::prefix('product')->group(function () {
     Route::get('/{product}', [ProductController::class, 'product']);
@@ -29,5 +32,8 @@ Route::middleware('auth')->prefix('cart')->group(function () {
     Route::post('/', [CartController::class, 'buy']);
 });
 
-Route::get('/delivered', [CartController::class, 'delivered']);
+Route::middleware('auth')->prefix('comment')->group(function () {
+    Route::post('/{product_id}', [CommentController::class, 'create']);
+});
+
 Auth::routes();
