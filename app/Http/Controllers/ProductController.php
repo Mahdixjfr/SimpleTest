@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Comment;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -17,9 +18,8 @@ class ProductController extends Controller
 
     public function product(Product $product)
     {
-        return view('Product/view', [
-            'product' => $product
-        ]);
+        $comments = Comment::where('product_id', $product->id)->verified()->get();
+        return view('Product/view', compact('product', 'comments'));
     }
 
     public function Buy(Product $product)
