@@ -4,7 +4,14 @@
 <div class="container">
     <ul>
         @foreach($delivereds as $delivered)
-        <li>{{}}</li>
+        <li>
+            <ul>
+                @foreach($delivered['products'] as $value)
+                <li>{{$value->product()->first()->name}}</li>
+                @endforeach
+            </ul>
+        </li>
+        <li>{{$delivered['total']}}</li>
         @endforeach
     </ul>
 </div>
