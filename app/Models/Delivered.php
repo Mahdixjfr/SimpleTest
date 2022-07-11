@@ -9,7 +9,7 @@ class Delivered extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'product_id', 'order'];
+    protected $fillable = ['user_id', 'product_id', 'order', 'number'];
 
     public function product()
     {
