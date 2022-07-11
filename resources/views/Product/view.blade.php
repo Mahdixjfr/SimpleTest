@@ -25,6 +25,25 @@
             </tr>
         </tbody>
     </table>
+
+    <div>
+        <h3>نظرات</h3>
+
+        <form action="/comment/{{$product->id}}" method="post">
+            @method('post')
+            @csrf
+            <textarea name="comment" id="" cols="30" rows="10"></textarea>
+            <button type="submit">ایجاد نظر</button>
+        </form>
+        <ul>
+            @foreach($comments as $comment)
+            <h6>{{$comment->user_id}}</h6>
+            <li>{{$comment->comment}}</li>
+            <div>{{$comment->like}}</div>
+            <div>{{$comment->dislike}}</div>
+            @endforeach
+        </ul>
+    </div>
 </div>
 @endsection
 
