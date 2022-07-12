@@ -3,6 +3,11 @@
 @section('content')
 <div class="container">
     <h2>{{$product->name}}</h2>
+    <form action="{{ route('addFavorite' , ['id' => $product->id]) }}" method="post">
+        @method('post')
+        @csrf
+        <button type="submit">افزودن به علاقه مندی</button>
+    </form>
     <table class="table">
         <thead class="table-dark">
             <tr>
