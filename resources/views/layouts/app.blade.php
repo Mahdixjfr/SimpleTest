@@ -72,7 +72,9 @@
                                 </form>
                             </div>
                         </li>
-                        <li><a href="/cart">سبد خرید</a></li>
+                        <li class="nav-item"><a href="/cart">سبد خرید</a></li>
+                        <li class="nav-item"><a href="{{ route('delivered') }}">تحویل شده</a></li>
+                        <li class="nav-item"><a href="{{ route('favorites') }}">علاقه مندی ها</a></li>
                         @endguest
                     </ul>
                 </div>
