@@ -59,15 +59,3 @@ class CartController extends Controller
         ]);
     }
 }
-
-
-
-$list = [
-    'order1' => [
-        'products' => ['obj1', 'obj2'],
-        'total' => 123123
-    ],
-    'obj2' => [
-        'products' => ['obj1', 'obj2']
-    ],
-];
