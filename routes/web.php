@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\DeliveredController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\User\DeliveredController;
+use App\Http\Controllers\User\ProductController;
+use App\Http\Controllers\User\ProfileController;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +21,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/delivered', [DeliveredController::class, 'delivered'])->middleware('auth');
 
 Route::prefix('product')->group(function () {
     Route::get('/{product}', [ProductController::class, 'product']);
@@ -36,6 +36,12 @@ Route::middleware('auth')->prefix('comment')->group(function () {
     Route::post('/{product_id}', [CommentController::class, 'create']);
     Route::post('/like/{comment}', [CommentController::class, 'like'])->name('comment.like');
     Route::post('/dislike/{comment}', [CommentController::class, 'dislike'])->name('comment.dislike');
+});
+
+Route::middleware('auth')->prefix('profile')->group(function () {
+    Route::get('/favorites', [ProfileController::class, 'favorites'])->name('favorites');
+    Route::post('/favorites/{id}', [ProfileController::class, 'addFavorite'])->name('addFavorite');
+    Route::get('/delivered', [DeliveredController::class, 'delivered'])->middleware('auth')->name('delivered');
 });
 
 Auth::routes();
