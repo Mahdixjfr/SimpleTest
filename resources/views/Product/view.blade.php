@@ -40,7 +40,17 @@
             <h6>{{$comment->user_id}}</h6>
             <li>{{$comment->comment}}</li>
             <div>{{$comment->like}}</div>
+            <form action="{{ route('comment.like' , ['comment' => $comment->id ]) }}" method="post">
+                @method('post')
+                @csrf
+                <button type="submit">like</button>
+            </form>
             <div>{{$comment->dislike}}</div>
+            <form action="{{ route('comment.dislike' , ['comment' => $comment->id]) }}" method="post">
+                @method('post')
+                @csrf
+                <button type="submit">dislike</button>
+            </form>
             @endforeach
         </ul>
     </div>
