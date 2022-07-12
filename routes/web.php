@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DeliveredController;
 use App\Http\Controllers\ProductController;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -31,9 +32,10 @@ Route::middleware('auth')->prefix('cart')->group(function () {
     Route::delete('/{cart}', [CartController::class, 'delete']);
     Route::post('/', [CartController::class, 'buy']);
 });
-
 Route::middleware('auth')->prefix('comment')->group(function () {
     Route::post('/{product_id}', [CommentController::class, 'create']);
+    Route::post('/like/{comment}', [CommentController::class, 'like'])->name('comment.like');
+    Route::post('/dislike/{comment}', [CommentController::class, 'dislike'])->name('comment.dislike');
 });
 
 Auth::routes();
