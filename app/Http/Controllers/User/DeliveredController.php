@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use App\Models\Delivered;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 
 class DeliveredController extends Controller
 {
@@ -26,7 +28,7 @@ class DeliveredController extends Controller
                 ];
             }
         }
-        return view('delivered', compact('delivereds'));
+        return view('User/Profile/delivered', compact('delivereds'));
     }
 
     public function checkDElivered()
