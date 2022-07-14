@@ -10,6 +10,7 @@
                 <th>موجودی</th>
                 <th>قیمت</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +20,13 @@
                 <td>{{show_name($product->user_id)}}</td>
                 <td>{{$product->inventory}}</td>
                 <td>{{$product->price}}</td>
+                <td>
+                    <form action="{{ route('addFavorite' , ['id' => $product->id]) }}" method="post">
+                        @method('post')
+                        @csrf
+                        <button class="btn btn-danger">حذف</a>
+                    </form>
+                </td>
                 <td>
                     <a href="/product/buy/{{$product->id}}" class="btn btn-success">Buy</a>
                 </td>
