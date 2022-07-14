@@ -9,12 +9,17 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
 
+    public $favorite_products = [];
+
     public function favorites()
     {
-        // $products = Favorite::where('user_id', userId())->product()->get();
-        $products = Favorite::where('user_id', userId())->first();
-        dd($products->product()->get());
-        return view('User/Profile/favorites', compact('products'));
+        $favorites_products = Favorite::where('user_id', userId());
+        if ($favorites_products->count() > 0) {
+            foreach ($favorites_products->get() as $favorite) {
+                $this->favorite_products[] = $favorite->product()->first();
+            }
+        }
+        return view('User/Profile/favorites', ['products' => $this->favorite_products]);
     }
 
     public function addFavorite($product_id)
