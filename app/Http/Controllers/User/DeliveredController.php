@@ -29,7 +29,7 @@ class DeliveredController extends Controller
                 ];
             }
         }
-        return view('User/Profile/delivered', compact('delivereds'));
+        return view('User/delivered', compact('delivereds'));
     }
 
     public function checkDelivered()
