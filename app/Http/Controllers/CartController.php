@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Delivered;
 use Illuminate\Http\Request;
+use App\Http\Controllers\User\DeliveredController;
 
 class CartController extends Controller
 {
@@ -39,23 +40,27 @@ class CartController extends Controller
     {
         $carts = Cart::where('user_id', userId())->get();
 
+        $Delivered = new DeliveredController();
+        if ($result = $Delivered->checkDelivered()) {
+            $this->order =  $result[0]->first()->order + 1;
+        }
+
         foreach ($carts as  $cart) {
-            $this->addDelivered($cart->product_id, $cart->number);
+            $this->addDelivered($cart->product()->first(), $cart->number);
         }
         Cart::where('user_id', UserId())->delete();
         return back();
     }
 
-    public function addDelivered($product_id, $number)
+    public function addDelivered($product, $number)
     {
-        if ($result = $this->checkDElivered()) {
-            $this->order =  $result[0]->first()->order + 1;
-        }
+
         Delivered::create([
             'user_id' =>  userId(),
             'number' => $number,
             'order' => $this->order,
-            'product_id' => $product_id
+            'product_id' => $product->id,
+            'price' => unformatNumber($product->price)
         ]);
     }
 }

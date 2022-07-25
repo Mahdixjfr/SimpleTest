@@ -9,17 +9,18 @@ use App\Http\Controllers\Controller;
 
 class DeliveredController extends Controller
 {
+    public $total = 0;
     public function delivered()
     {
         $delivereds = [];
-        if ($this->checkDElivered()) {
+        if ($this->checkDelivered()) {
             $last_id_delivered = Delivered::where('user_id', userId())->orderBy('order', 'desc')->first()->order;
 
             for ($i = $last_id_delivered; $i >= 1; $i--) {
                 $objects = Delivered::where('user_id', userId())->where('order', $i)->get();
                 foreach ($objects as $delivered) {
                     $number = $delivered->number;
-                    $price = unformatNumber($delivered->product()->first()->price);
+                    $price = $delivered->price;
                     $this->total = $this->total + $number * $price;
                 }
                 $delivereds[] = [
@@ -31,7 +32,7 @@ class DeliveredController extends Controller
         return view('User/Profile/delivered', compact('delivereds'));
     }
 
-    public function checkDElivered()
+    public function checkDelivered()
     {
         $result = Delivered::where('user_id', userId())->orderBy('order', 'desc');
         if ($result->count() > 0) {
