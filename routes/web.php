@@ -28,7 +28,7 @@ Route::prefix('product')->group(function () {
     Route::post('/buy/{product}', [ProductController::class, 'adding_to_cart']);
 });
 Route::middleware('auth')->prefix('cart')->group(function () {
-    Route::get('/', [CartController::class, 'show']);
+    Route::get('/', [CartController::class, 'show'])->name('cart');
     Route::delete('/{cart}', [CartController::class, 'delete']);
     Route::post('/', [CartController::class, 'buy']);
 });
@@ -38,7 +38,10 @@ Route::middleware('auth')->prefix('comment')->group(function () {
     Route::post('/dislike/{comment}', [CommentController::class, 'dislike'])->name('comment.dislike');
 });
 
-Route::middleware('auth')->prefix('profile')->group(function () {
+Route::middleware('auth')->prefix('user')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('editProfile');
+    Route::patch('/profile/{user}', [ProfileController::class, 'update'])->name('updateProfile');
     Route::get('/favorites', [ProfileController::class, 'favorites'])->name('favorites');
     Route::post('/favorites/{id}', [ProfileController::class, 'addFavorite'])->name('addFavorite');
     Route::get('/delivered', [DeliveredController::class, 'delivered'])->middleware('auth')->name('delivered');
