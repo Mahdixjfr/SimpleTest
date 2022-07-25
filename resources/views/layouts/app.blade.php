@@ -62,19 +62,22 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('profile') }}">پنل کاربری</a>
+                                <a class="dropdown-item" href="/cart">سبد خرید</a>
+                                <a class="dropdown-item" href="{{ route('delivered') }}">تحویل شده</a>
+                                <a class="dropdown-item" href="{{ route('favorites') }}">علاقه مندی ها</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    خروج از حساب کاربری
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
                             </div>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            </div>
                         </li>
-                        <li class="nav-item"><a href="/cart">سبد خرید</a></li>
-                        <li class="nav-item"><a href="{{ route('delivered') }}">تحویل شده</a></li>
-                        <li class="nav-item"><a href="{{ route('favorites') }}">علاقه مندی ها</a></li>
                         @endguest
                     </ul>
                 </div>
