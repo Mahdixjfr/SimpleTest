@@ -21,7 +21,7 @@
         <tbody>
             <tr>
                 <td>{{$product->name}}</td>
-                <td>{{show_name($product->user_id)}}</td>
+                <td>{{showName($product->user_id)}}</td>
                 <td>{{$product->inventory}}</td>
                 <td>{{$product->price}}</td>
                 <td>
@@ -42,7 +42,7 @@
         </form>
         <ul>
             @foreach($comments as $comment)
-            <h6>{{$comment->user_id}}</h6>
+            <h6>{{showName($comment->user_id)}}</h6>
             <li>{{$comment->comment}}</li>
             <div>{{$comment->like}}</div>
             <form action="{{ route('comment.like' , ['comment' => $comment->id ]) }}" method="post">
