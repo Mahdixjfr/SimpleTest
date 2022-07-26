@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SellerController;
 use App\Http\Controllers\User\DeliveredController;
 use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\ProfileController;
-use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/category/{category}', [HomeController::class, 'category'])->name('category');
 
 Route::prefix('product')->group(function () {
     Route::get('/{product}', [ProductController::class, 'product']);
@@ -47,4 +49,8 @@ Route::middleware('auth')->prefix('user')->group(function () {
     Route::get('/delivered', [DeliveredController::class, 'delivered'])->middleware('auth')->name('delivered');
 });
 
+Route::middleware('auth')->prefix('seller')->group(function () {
+    Route::get('/register', [SellerController::class, 'showRegisterationForm'])->name('showRegisterSeller');
+    Route::post('/', [SellerController::class, 'register'])->name('registerSeller');
+});
 Auth::routes();
