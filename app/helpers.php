@@ -4,7 +4,7 @@
 use App\Models\User;
 
 if (!function_exists('showName')) {
-    function show_name($id)
+    function showName($id)
     {
         $user = User::find($id);
         return $user->name;
@@ -44,5 +44,25 @@ if (!function_exists('unformatNumber')) {
     {
         $number =  mb_ereg_replace("[^0-9]", "", $number);
         return $number;
+    }
+}
+
+if (!function_exists('findUser')) {
+    function findUser($id)
+    {
+        $user = User::find($id);
+        return $user;
+    }
+}
+
+if (!function_exists('checkSeller')) {
+    function checkSeller()
+    {
+        $user = findUser(userId());
+        if ($user->type == 'seller') {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
