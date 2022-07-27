@@ -17,6 +17,7 @@
         <input type="file" name="photo">
         <label for="">توضیحات :</label>
         <textarea name="description" id="" cols="30" rows="10" placeholder="توضیحات کالا را وارد کنید"></textarea>
+        <p>توجه شما تنها در دسته بندی <mark>{{$category_name}}</mark> می توانید کالا ثبت کنید</p>
         <button type="submit">ثبت کالا</button>
     </form>
 
