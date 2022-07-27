@@ -1,13 +1,13 @@
 <?php
 
-
+use App\Models\Seller;
 use App\Models\User;
 
 if (!function_exists('showName')) {
     function showName($id)
     {
-        $user = User::find($id);
-        return $user->name;
+        $seller = Seller::find($id);
+        return $seller->store_name;
     }
 }
 
