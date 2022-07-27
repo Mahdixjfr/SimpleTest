@@ -21,7 +21,7 @@
         <tbody>
             <tr>
                 <td>{{$product->name}}</td>
-                <td>{{showName($product->user_id)}}</td>
+                <td>{{showName($product->seller_id)}}</td>
                 <td>{{$product->inventory}}</td>
                 <td>{{$product->price}}</td>
                 <td>
