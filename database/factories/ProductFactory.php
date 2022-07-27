@@ -21,7 +21,7 @@ class ProductFactory extends Factory
             'category_id' => rand(1, 4),
             'photo' => $this->faker->name(),
             'description' => $this->faker->text(100),
-            'user_id' => rand(1, 10),
+            'seller_id' => 1,
             'price' => rand(100000, 1000000),
             'inventory' => rand(50, 100),
         ];
