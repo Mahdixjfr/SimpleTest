@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Http\Requests\SellerRegisterRequest;
 use App\Models\Seller;
 use Illuminate\Http\Request;
@@ -36,5 +37,17 @@ class SellerController extends Controller
         } else {
             return true;
         }
+    }
+
+    public function store()
+    {
+        return view('Seller/create');
+    }
+
+    public function create(ProductRequest $request)
+    {
+        $file = $request->photo;
+        $result = $file->move(public_path('/storage/photo/'), $file->getClientOriginalName());
+        dd($result);
     }
 }
