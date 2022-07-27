@@ -7,6 +7,7 @@ use App\Http\Controllers\SellerController;
 use App\Http\Controllers\User\DeliveredController;
 use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\ProfileController;
+use App\Models\Seller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -52,5 +53,7 @@ Route::middleware('auth')->prefix('user')->group(function () {
 Route::middleware('auth')->prefix('seller')->group(function () {
     Route::get('/register', [SellerController::class, 'showRegisterationForm'])->name('showRegisterSeller');
     Route::post('/', [SellerController::class, 'register'])->name('registerSeller');
+    Route::get('/create', [SellerController::class, 'store'])->name('formCreateProduct');
+    Route::post('/create', [SellerController::class, 'create'])->name('createProduct');
 });
 Auth::routes();
