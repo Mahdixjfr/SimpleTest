@@ -51,6 +51,8 @@ Route::middleware('auth')->prefix('user')->group(function () {
 });
 
 Route::middleware('auth')->prefix('seller')->group(function () {
+    Route::get('/products', [SellerController::class,  'products'])->name('sellerProducts');
+    Route::delete('/products/{product}', [SellerController::class,  'deleteProduct'])->name('deleteProduct');
     Route::get('/register', [SellerController::class, 'showRegisterationForm'])->name('showRegisterSeller');
     Route::post('/', [SellerController::class, 'register'])->name('registerSeller');
     Route::get('/create', [SellerController::class, 'store'])->name('formCreateProduct');
