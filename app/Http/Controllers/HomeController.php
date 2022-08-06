@@ -11,7 +11,7 @@ class HomeController extends Controller
     public function index()
     {
         return view('home', [
-            'products' => Product::paginate(15),
+            'products' => Product::orderBy('id', 'desc')->paginate(15),
         ]);
     }
 
