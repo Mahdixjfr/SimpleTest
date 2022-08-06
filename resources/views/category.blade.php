@@ -17,6 +17,7 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>نام محصول</th>
                                 <th>قیمت</th>
                                 <th>موجودی</th>
@@ -26,6 +27,7 @@
                         <tbody>
                             @foreach($products as $product)
                             <tr>
+                                <td><a href="/product/{{$product->id}}"><img src="/storage/photo/{{$product->photo}}" alt="" width="200px" height="200px"></a></td>
                                 <td><a href="/product/{{$product->id}}">{{$product->name}}</a></td>
                                 <td>{{$product->price}}</td>
                                 <td>{{$product->inventory}}</td>

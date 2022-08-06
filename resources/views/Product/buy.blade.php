@@ -7,6 +7,7 @@
     <table class="table">
         <thead class="table-dark">
             <tr>
+                <th></th>
                 <th>نام کالا</th>
                 <th>شرکت تولید کننده</th>
                 <th>موجودی</th>
@@ -15,6 +16,7 @@
         </thead>
         <tbody>
             <tr>
+                <td><img src="/storage/photo/{{$product->photo}}" alt="" width="200px" height="200px"></td>
                 <td>{{$product->name}}</td>
                 <td>{{showName($product->seller_id)}}</td>
                 <td>{{$product->inventory}}</td>
