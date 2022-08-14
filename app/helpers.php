@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Product;
 use App\Models\Seller;
 use App\Models\User;
 
@@ -64,5 +65,27 @@ if (!function_exists('checkSeller')) {
         } else {
             return false;
         }
+    }
+}
+
+if (!function_exists('getPhotoProductById')) {
+    function getPhotoProductById($id)
+    {
+        $produtc = Product::find($id);
+        return $produtc->photo;
+    }
+}
+if (!function_exists('getNameProductById')) {
+    function getNameProductById($id)
+    {
+        $produtc = Product::find($id);
+        return $produtc->name;
+    }
+}
+if (!function_exists('countTotal')) {
+    function countTotal($price, $number)
+    {
+        $total = $price * $number;
+        return number_format($total);
     }
 }
