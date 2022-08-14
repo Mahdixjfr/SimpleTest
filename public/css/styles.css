@@ -1,0 +1,113 @@
+body {
+    direction: rtl;
+    font-family: "custom-font";
+}
+
+@font-face {
+    src: url('/../fonts/Samim-FD.ttf');
+    font-family: "custom-font";
+  }
+  
+:root {
+    --color-primary : #191347;
+    --color-secondary : #ed1c24;
+    --color-accet : #fff;
+    --color-gray : #ccc;
+}
+* {
+    box-sizing: border-box;
+    white-space: nowrap ;
+}
+
+a {
+    text-decoration: none;
+}
+
+.contain {
+    margin: 0;
+    display: grid;
+    grid-template: 25fr auto 25fr / 100fr;
+    grid-template-areas: "header" "main" "footer";
+    row-gap: 0.5rem;
+    width: 100%;
+}
+.header {
+    grid-area: header;
+}
+
+.main {
+    grid-area: main;
+    background-color: var(--color-secondary);
+    border-radius: 3rem;
+    /* height: 60vh; */
+}
+
+.footer {
+    grid-area: footer;
+    border-radius: 3rem;
+    background-color: var(--color-primary);
+}
+h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+.star {
+    color: var(--color-secondary);
+}
+
+header {
+    width: 100%;
+    height: 14vh;
+    padding: 2rem;
+    color: var(--color-gray);
+    background: linear-gradient(75deg , rgba(237,28,36,0.97) 2% , rgba(25,19,71,0.98) 60%);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.sign a {
+    padding: 0.6rem;
+    border-radius: 0.7rem;
+    color: var(--color-gray);
+    background-color: var(--color-primary);
+}
+
+.sign:hover {
+    transform: scale(1.07);
+}
+
+.input-search {
+    background-color: var(--color-accet);
+    width: 30vw;
+    height: 2.1rem;
+    padding: 0.7rem 0.9rem;
+    margin: 0.5rem;
+    border-radius: 1rem;
+    border:  1px solid lightgray;
+
+}
+
+.nav-bar {
+    list-style-type: none;
+    margin-top: 0.5rem;
+    height: 5vh;
+    background-color: var(--color-accet);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.nav-item {
+    text-align: center;
+    margin: 1rem;
+    width: 5rem;
+    padding: 0.5rem;
+    height: 2rem;
+}
+
+.nav-item:hover {
+    border-bottom: 2px solid var(--color-secondary);
+}
