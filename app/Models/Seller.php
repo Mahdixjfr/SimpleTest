@@ -20,4 +20,9 @@ class Seller extends Model
     {
         return  $this->hasMany(Product::class);
     }
+
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class);
+    }
 }
