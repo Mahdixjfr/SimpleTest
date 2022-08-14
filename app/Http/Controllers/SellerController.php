@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Http\Requests\SellerRegisterRequest;
+use App\Models\Delivered;
 use App\Models\Product;
 use App\Models\Seller;
 use Illuminate\Http\File;
@@ -85,5 +86,11 @@ class SellerController extends Controller
     {
         $product->delete();
         return back();
+    }
+
+    public function sold()
+    {
+        $products = Delivered::where('seller_id', userId())->paginate(15);
+        return view('Seller/sold', compact('products'));
     }
 }
