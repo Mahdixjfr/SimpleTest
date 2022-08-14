@@ -54,9 +54,9 @@ class CartController extends Controller
 
     public function addDelivered($product, $number)
     {
-
         Delivered::create([
             'user_id' =>  userId(),
+            'seller_id' => $product->seller_id,
             'number' => $number,
             'order' => $this->order,
             'product_id' => $product->id,
