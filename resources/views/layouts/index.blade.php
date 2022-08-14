@@ -12,14 +12,18 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="contain">
         <div class="header">
             <header>
                 <div class="title">
                     <h1 class="header-title">IRAN <span class="star">STAR</span></h1>
                 </div>
-                <div class="search"></div>
-                <div class="sign"></div>
+                <div class="search">
+                    <input type="text" name="search" class="input-search">
+                </div>
+                <div class="sign">
+                    <a href="/login">ورود | ثبت نام</a>
+                </div>
             </header>
             <ul class="nav-bar">
                 <li class="nav-item">link 1</li>
@@ -28,7 +32,7 @@
                 <li class="nav-item">link 4</li>
             </ul>
         </div>
-        <!-- @yield('main') -->
+        @yield('main')
         <div class="footer">
             <footer></footer>
         </div>
