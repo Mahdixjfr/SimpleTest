@@ -29,7 +29,6 @@ a {
     grid-template: 25fr auto 25fr / 100fr;
     grid-template-areas: "header" "main" "footer";
     row-gap: 0.5rem;
-    width: 100%;
 }
 .header {
     grid-area: header;
@@ -37,9 +36,7 @@ a {
 
 .main {
     grid-area: main;
-    background-color: var(--color-secondary);
     border-radius: 3rem;
-    /* height: 60vh; */
 }
 
 .footer {
@@ -50,6 +47,12 @@ a {
 h1 {
     margin: 0;
     font-size: 2.5rem;
+    color: var(--color-accet);
+}
+
+h2,h3,h4 {
+    color: var(--color-primary);
+    margin: 0 1rem 1rem 1rem;
 }
 
 .star {
@@ -110,4 +113,56 @@ header {
 
 .nav-item:hover {
     border-bottom: 2px solid var(--color-secondary);
+}
+
+
+/*  */
+
+.carousel {
+    background-color: var(--color-accet);
+    width: 99vw;
+    /* justify-content: center; */
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid var(--color-secondary);
+    border-radius: 1.5rem;
+    width: 15vw;
+    height: 30vh;
+    background-color: #fff;
+    margin: 0.5rem;
+    padding: 0.5rem;
+}
+.carousel-name {
+    align-self: flex-start;
+    color: var(--color-primary);
+    font-size: 1.3rem;
+    font-weight: 550;
+}
+.carousel-price {
+    align-self: flex-end;
+    margin-left: 1rem;
+    color: var(--color-primary);
+}
+
+.carousel-price::after {
+    content: '\200e';
+}
+
+.ltr {
+    unicode-bidi: embed;
+    direction: ltr;
+    color: var(--color-secondary);
+ }
+.owl-nav,.owl-dots {
+    display: none !important;
+}
+
+.product-link {
+    width: 85% !important;
+    height:80%;
 }

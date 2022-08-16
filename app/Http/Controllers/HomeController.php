@@ -10,8 +10,10 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $newProducts = Product::orderBy('id', 'desc')->take(12)->get();
+        // dd($newProducts);
         return view('home', [
-            'products' => Product::orderBy('id', 'desc')->paginate(15),
+            'newProducts' => Product::orderBy('id', 'desc')->take(12)->get(),
         ]);
     }
 

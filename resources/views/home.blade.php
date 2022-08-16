@@ -2,48 +2,59 @@
 
 @section('main')
 <div class="main">
-    <!-- <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                    @endif
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>نام محصول</th>
-                                <th>قیمت</th>
-                                <th>موجودی</th>
-                                <th>توضیحات</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($products as $product)
-                            <tr>
-                                <td><a href="/product/{{$product->id}}"><img src="/storage/photo/{{$product->photo}}" alt="" width="200px" height="200px"></a></td>
-                                <td><a href="/product/{{$product->id}}">{{$product->name}}</a></td>
-                                <td>{{$product->price}}</td>
-                                <td>{{$product->inventory}}</td>
-                                <td>{{$product->description}}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <div class="d-flex justify-content-center">
-                        {!! $products->links() !!}
-                    </div>
-                </div>
-            </div>
+    <h2 class="title">جدیدترین ها</h2>
+    <div class="owl-carousel owl-theme carousel">
+        @foreach($newProducts as $product)
+        <div class="item">
+            <a class="product-link" href="/product/{{$product->id}}"><img src="storage/photo/{{$product->photo}}" alt=""></a>
+            <div class="carousel-name">{{$product->name}}</div>
+            <div class="carousel-price">{{$product->price}} <span class="ltr">تومان</span></div>
         </div>
-    </div> -->
-
-
+        @endforeach
+    </div>
+    <h2 class="title">پر بازدیدترین ها</h2>
+    <div class="owl-carousel owl-theme carousel">
+        @foreach($newProducts as $product)
+        <div class="item">
+            <a class="product-link" href="/product/{{$product->id}}"><img src="storage/photo/{{$product->photo}}" alt=""></a>
+            <div class="carousel-name">{{$product->name}}</div>
+            <div class="carousel-price">{{$product->price}} <span class="ltr">تومان</span></div>
+        </div>
+        @endforeach
+    </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    $(document).ready(function() {
+        $('.owl-carousel').owlCarousel({
+            rtl: true,
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 4
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        })
+    });
+</script>
 @endsection
