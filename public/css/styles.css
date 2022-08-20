@@ -187,7 +187,7 @@ header::after {
     height: 150vh;
     display: grid;
     grid-template: 50vh 30vh 20vh / 30fr 48fr 22fr ;
-    justify-items: center;
+    /* justify-items: center; */
     /* align-items: center; */
 }
 
@@ -203,8 +203,14 @@ header::after {
 
 .product-inf {
     display: flex;
+    /* width: 30vw; */
+
+    border: 1px solid rebeccapurple;
     flex-direction: column;
     justify-content: center;
+    /* white-space: initial; */
+    overflow: auto;
+    word-wrap: break-word;
 }
 
 .product-related {
@@ -218,8 +224,8 @@ header::after {
 }
 
 .img {
-    width: 400px;
-    height: 400px;
+    width: 350px;
+    height: 350px;
 }
 .heart {
     align-self: flex-start;
