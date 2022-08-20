@@ -1,5 +1,10 @@
 @extends('layouts.index')
 
+@section('css_links')
+<link rel="stylesheet" href="{{ asset('css/main.css') }}">
+@endsection
+@section('title') ایران استار @endsection
+
 @section('main')
 <div class="main">
     <div class="bg-one">
