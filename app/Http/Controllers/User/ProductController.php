@@ -19,18 +19,14 @@ class ProductController extends Controller
 
     public function product(Product $product)
     {
+        $product_category = $product->category()->first();
+
+        $products = $product_category->products()->orderBY('id', 'desc')->take(12)->get();
         $comments = Comment::where('product_id', $product->id)->verified()->get();
-        return view('Product/view', compact('product', 'comments'));
+        return view('Product/view', compact('product', 'comments', 'products'));
     }
 
     public function Buy(Product $product)
-    {
-        return view('Product/buy', [
-            'product' => $product
-        ]);
-    }
-
-    public function adding_to_cart(Product $product)
     {
         $number = request('number');
         $this->check_number(request()->all(), $product->inventory);
@@ -46,6 +42,10 @@ class ProductController extends Controller
         ]);
         return redirect('/');
     }
+
+    // public function adding_to_cart(Product $product)
+    // {
+    // }
 
     public function check_number($request, $inventory)
     {

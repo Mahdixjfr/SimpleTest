@@ -163,30 +163,31 @@ header::after {
 #user {
     color: var(--color-primary);
     border-radius: 2rem;
-    transform: scale(1.3);
+    transform: scale(1.2);
     background-color: var(--color-accet);
     transition: transform 0.4s;
 }
 #cart-icon {
     color: var(--color-accet);
+    transform: scale(0.9);
     transition: transform 0.4s;
 }
 
 #cart-icon:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 #user:hover {
-    transform: scale(1.5);
+    transform: scale(1.4);
 }
 /*  */
 
 .main {
     grid-area: main;
-    border: 1px solid red;
     height: 150vh;
     display: grid;
-    grid-template: 50vh 30vh 20vh / 30fr 48fr 22fr ;
+    grid-template: 50vh 50vh 20vh / 30fr 48fr 22fr ;
+    gap: 0.5rem 0.8rem;
     /* justify-items: center; */
     /* align-items: center; */
 }
@@ -197,25 +198,36 @@ header::after {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
 }
 
 .product-inf {
+    width: 100%;
     display: flex;
-    /* width: 30vw; */
-
-    border: 1px solid rebeccapurple;
     flex-direction: column;
     justify-content: center;
-    /* white-space: initial; */
-    overflow: auto;
+    overflow: hidden;
     word-wrap: break-word;
+    /* white-space: initial; */
+    /* word-wrap: break-word; */
 }
+
+.product-buy {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position:  relative;
+}
+
+
 
 .product-related {
     grid-row: 2 / 3;
     grid-column: 1 / 3;
+    padding: 1rem;
+    border-top: 1px solid lightgray;
 }
 
 .product-comments {
@@ -224,11 +236,137 @@ header::after {
 }
 
 .img {
-    width: 350px;
-    height: 350px;
+    width: 300px;
+    height: 300px;
 }
 .heart {
     align-self: flex-start;
     color: var(--color-secondary);
+    margin: 0 1rem;
+}
+
+.inf-item {
+    margin: 0.5rem;
+    color: var(--color-primary);
+}
+
+.inf {
+    font-size: 0.95rem;
+    color: var(--color-primary);
+}
+
+.toman {
+    font-weight: 600;
+    color: var(--color-secondary);
+}
+.buy-box {
+    /* width: 80%;
+    height: 95%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items:center;
+    border: 1px solid var(--color-primary);
+    border-radius: 1rem;
+    background-color: var(--color-accet);
+    width: 18vw;
+    height: 40vh;
+    position: fixed;
+    /* left: 0; */
+}
+
+.buy {
+    width: 90%;
+}
+.btn-buy {
+    border: none;
+    border-radius: 1rem;
+    width: 100%;
+    padding: 0.5rem;
+    color: var(--color-accet);
+    background-color: var(--color-secondary);
+    animation-name: buy;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+}
+
+@keyframes buy {
+    50% {
+        box-shadow: 0 0 1.2rem var(--color-secondary);
+    }
+
+    100% {
+        box-shadow: none;
+    }
+}
+
+.price {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.title {
     margin: 1rem;
+}
+/*  */
+.carousel {
+    background-color: var(--color-accet);
+    z-index: 0 !important;
+    width: 100% !important;
+    box-sizing : border-box;
+    display: flex !important;
+    justify-content: center ;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid var(--color-secondary);
+    border-radius: 1.5rem;
+    width: 15vw;
+    background-color: #fff;
+    margin: 0.5rem;
+    padding: 0.5rem;
+}
+.carousel-name {
+    align-self: flex-start;
+    color: var(--color-primary);
+    font-size: 1.3rem;
+    font-weight: 550;
+}
+.carousel-price {
+    align-self: flex-end;
+    margin-left: 1rem;
+    color: var(--color-primary);
+}
+
+.carousel-price::after {
+    content: '\200e';
+}
+
+.ltr {
+    unicode-bidi: embed;
+    direction: ltr;
+    font-weight: 600;
+    color: var(--color-secondary);
+ }
+.owl-nav,.owl-dots {
+    display: none !important;
+}
+
+.product-link {
+    width: 85% !important;
+    height:80%;
+}
+
+.carousel-image {
+    transition: transform 0.4s ;
+}
+.carousel-image:hover {
+    transform: scale(1.08);
 }

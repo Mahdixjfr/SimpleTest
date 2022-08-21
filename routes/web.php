@@ -27,8 +27,7 @@ Route::get('/category/{category}', [HomeController::class, 'category'])->name('c
 
 Route::prefix('product')->group(function () {
     Route::get('/{product}', [ProductController::class, 'product']);
-    Route::get('/buy/{product}', [ProductController::class, 'buy']);
-    Route::post('/buy/{product}', [ProductController::class, 'adding_to_cart']);
+    Route::post('/{product}', [ProductController::class, 'buy'])->name('buyProduct');
 });
 Route::middleware('auth')->prefix('cart')->group(function () {
     Route::get('/', [CartController::class, 'show'])->name('cart');

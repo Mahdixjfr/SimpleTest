@@ -5,13 +5,6 @@
     width: 93vw;
 }
 
-.carousel-image {
-    transition: transform 0.4s ;
-}
-.carousel-image:hover {
-    transform: scale(1.08);
-    /* filter: brightness(90%); */
-}
 
 .bg-one , .bg-two {
     margin-bottom: 2rem;

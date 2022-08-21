@@ -18,15 +18,64 @@
         <img class="img" src="/storage/photo/{{ $product->photo }}" alt="">
     </div>
     <div class="product-inf">
-        <h3>$product->name</h3>
-        <p class="inf-item">asdasd</p>
-        <p class="inf-item">asdasd</p>
-        <p class="inf-item">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime eligendi tempora natus vero repudiandae, facilis magni aperiam enim error sint illo ea reprehenderit vel voluptas ab in maiores dolorem deserunt.</p>
+        <h3 class="inf-item">لپ تاپ hp</h3>
+        <p class="inf-item inf">فروشنده : لپ تاپ استار</p>
+        <p class="inf-item inf">دسته بندی : لپ تاپ</p>
+        <p class="inf-item inf">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime
+            eligendi tempora natus vero repudiandae, facilis magni aperiam enim
+            error sint illo ea reprehenderit vel voluptas ab in maiores dolorem
+            deserunt.</p>
     </div>
-    <div class="product-buy">C</div>
-    <div class="product-related">D</div>
+    <div class="product-buy">
+        <div class="buy-box">
+            <p class="inf">Lorem, ipsum.</p>
+            <p class="inf">Lorem, ipsum.</p>
+            <p class="inf"><span class="price">{{$product->price}}</span> <span class="toman">تومان</span></p>
+            <div class="buy">
+                <form action="{{ route('buyProduct' , ['product' => $product->id]) }}">
+                    @method('post')
+                    @csrf
+                    <button class="btn-buy">افزودن به سبد خرید</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="product-related">
+        <h2 class="title">کالا های مشابه</h2>
+        <div class="owl-carousel owl-theme carousel">
+            @foreach($products as $product)
+            <div class="item">
+                <a class="product-link" href="/product/{{$product->id}}"><img class="carousel-image" src="/storage/photo/{{$product->photo}}" alt=""></a>
+                <div class="carousel-name">{{$product->name}}</div>
+                <div class="carousel-price">{{$product->price}} <span class="ltr">تومان</span></div>
+            </div>
+            @endforeach
+        </div>
+    </div>
     <div class="product-comments">E</div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('.owl-carousel').owlCarousel({
+            rtl: true,
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 4
+                }
+            }
+        })
+    });
+</script>
 @endsection
 <!-- <div>
     <h3>نظرات</h3>
