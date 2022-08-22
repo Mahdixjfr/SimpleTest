@@ -52,7 +52,25 @@
             @endforeach
         </div>
     </div>
-    <div class="product-comments">E</div>
+    <div class="product-comments">
+        <div class="title-comments">
+            <h2 class="title">دیدگاه کاربران</h2>
+            <button id="add-comment" class="add-comment">افزودن دیدگاه</button>
+        </div>
+        <div class="comments">
+            <div class="comment">
+                <div class="header-comment">
+                    <h4>علی قلی</h4>
+                    <span>14/23/23</span>
+                </div>
+                <div class="body-comment">
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                        Ipsam delectus quisquam natus qui modi velit.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
