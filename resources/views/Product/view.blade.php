@@ -1,19 +1,13 @@
 @extends('layouts.index')
 @section('title') کالا @endsection
-
-<!-- <h2>{{$product->name}}</h2>
-<form action="{{ route('addFavorite' , ['id' => $product->id]) }}" method="post">
-    @method('post')
-    @csrf
-    <button type="submit">افزودن به علاقه مندی</button>
-</form> -->
-
-
+@section('css_links')
+<link rel="stylesheet" href="/css/product-view.css">
+@endsection
 @section('main')
 <div class="main">
     <div class="product-img">
         <div class="heart">
-            <i class="fa-regular fa-heart fa-2x"></i>
+            <button class="button heart"><i class="fa-regular fa-heart fa-2x"></i></button>
         </div>
         <img class="img" src="/storage/photo/{{ $product->photo }}" alt="">
     </div>
@@ -31,11 +25,13 @@
             <p class="inf">Lorem, ipsum.</p>
             <p class="inf">Lorem, ipsum.</p>
             <p class="inf"><span class="price">{{$product->price}}</span> <span class="toman">تومان</span></p>
-            <div class="buy">
-                <form action="{{ route('buyProduct' , ['product' => $product->id]) }}">
+            <button id="btn-buy" onclick="buy()" class="btn-buy">افزودن به سبد خرید</button>
+            <div id="buy" style="display: none;" class="buy">
+                <form class="form-buy" action="{{ route('buyProduct' , ['product' => $product->id]) }}" method="POST">
+                    <input type="number" id="input-buy" name="number" class="input-buy" value="1">
                     @method('post')
                     @csrf
-                    <button class="btn-buy">افزودن به سبد خرید</button>
+                    <button type="submit" class="btn-confirm">تایید</button>
                 </form>
             </div>
         </div>
@@ -60,21 +56,46 @@
         <div class="comments">
             <div class="comment">
                 <div class="header-comment">
-                    <h4>علی قلی</h4>
-                    <span>14/23/23</span>
+                    <h6>علی قلی</h6>
+                    <span class="time">14/23/23</span>
                 </div>
                 <div class="body-comment">
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                        Ipsam delectus quisquam natus qui modi velit.</p>
-
+                    <p class="comment-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                        Ipsam delectus quisquam natus qui modi velit.
+                    </p>
+                    <div class="action-comment">
+                        <button class="button like"><span class="count-comment">2</span> <i class="fa-regular fa-thumbs-up fa-2x"></i></button>
+                        <button class="button dislike"><span class="count-comment">4</span> <i class="fa-regular fa-thumbs-down fa-2x"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="comment">
+                <div class="header-comment">
+                    <h6>علی قلی</h6>
+                    <span class="time">14/23/23</span>
+                </div>
+                <div class="body-comment">
+                    <p class="comment-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                        Ipsam delectus quisquam natus qui modi velit.
+                    </p>
+                    <div class="action-comment">
+                        <button class="button like"><span class="count-comment">2</span> <i class="fa-regular fa-thumbs-up fa-2x"></i></button>
+                        <button class="button dislike"><span class="count-comment">4</span> <i class="fa-regular fa-thumbs-down fa-2x"></i></button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+
 <script>
+    function buy() {
+        document.getElementById("btn-buy").style.display = "none";
+        document.getElementById("buy").style.display = "block";
+    }
     $(document).ready(function() {
+
         $('.owl-carousel').owlCarousel({
             rtl: true,
             loop: true,
@@ -95,32 +116,3 @@
     });
 </script>
 @endsection
-<!-- <div>
-    <h3>نظرات</h3>
-
-    <form action="/comment/{{$product->id}}" method="post">
-        @method('post')
-        @csrf
-        <textarea name="comment" id="" cols="30" rows="10"></textarea>
-        <button type="submit">ایجاد نظر</button>
-    </form>
-    <ul>
-        @foreach($comments as $comment)
-        <h6>{{showName($comment->user_id)}}</h6>
-        <li>{{$comment->comment}}</li>
-        <div>{{$comment->like}}</div>
-        <form action="{{ route('comment.like' , ['comment' => $comment->id ]) }}" method="post">
-            @method('post')
-            @csrf
-            <button type="submit">like</button>
-        </form>
-        <div>{{$comment->dislike}}</div>
-        <form action="{{ route('comment.dislike' , ['comment' => $comment->id]) }}" method="post">
-            @method('post')
-            @csrf
-            <button type="submit">dislike</button>
-        </form>
-        @endforeach
-    </ul>
-</div>
-</div> -->
