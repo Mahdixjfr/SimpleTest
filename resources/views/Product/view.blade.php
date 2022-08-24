@@ -51,7 +51,13 @@
     <div class="product-comments">
         <div class="title-comments">
             <h2 class="title">دیدگاه کاربران</h2>
-            <button id="add-comment" class="add-comment">افزودن دیدگاه</button>
+            <button id="add-comment" onclick="create_comment()" class="add-comment">افزودن دیدگاه</button>
+        </div>
+        <div id="create-comment" class="create-comment" style="display: none;">
+            <form class="form-comment" action="" method="post">
+                <textarea class="input-comment" name="comment" id="" cols="30" rows="10" placeholder="نظر خود را بنویسید"></textarea>
+                <button type="submit" class="btn-confirm btn-comment">تایید</button>
+            </form>
         </div>
         <div class="comments">
             <div class="comment">
@@ -90,6 +96,10 @@
 
 
 <script>
+    function create_comment() {
+        document.getElementById("create-comment").style.display = "block";
+    }
+
     function buy() {
         document.getElementById("btn-buy").style.display = "none";
         document.getElementById("buy").style.display = "block";

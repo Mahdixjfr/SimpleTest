@@ -86,10 +86,12 @@
                         </ul>
                     </div>
                 </li>
+                @if(auth()->check())
                 @if(! checkSeller())
                 <li class="">
                     <a class="nav-item" href="{{ route('showRegisterSeller') }}">فروشنده شو</a>
                 </li>
+                @endif
                 @endif
 
             </ul>
