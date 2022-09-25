@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserType;
 use App\Http\Requests\ProductRequest;
 use App\Http\Requests\SellerRegisterRequest;
 use App\Models\Delivered;
@@ -15,7 +16,7 @@ class SellerController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth.seller')->except('showRegisterationForm');
+        $this->middleware('auth.seller')->except(['showRegisterationForm', 'register']);
     }
     public function findCategorySeller()
     {
@@ -36,7 +37,7 @@ class SellerController extends Controller
             $validated_data = array_merge($validated_data, $list);
             Seller::create($validated_data);
             $user = findUser(userId());
-            $user->update(['type' => 'seller']);
+            $user->update(['type' => UserType::Seller]);
             return redirect('/');
         } else {
             return back()->with('registered', 'شما قبلا ثبت نام کرده اید');

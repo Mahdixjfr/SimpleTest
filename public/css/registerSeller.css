@@ -1,0 +1,72 @@
+.main {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    width: 50%;
+    padding: 1.5rem 1rem;
+    border: 1px solid var(--color-gray);
+    border-radius: 1.5rem;
+    box-shadow: 0 0 0.7rem rgb(158, 149, 149);
+    background: url('../backgrounds/white-red-bg.jpg');
+    background-size: cover;
+    background-position: -0.5rem -3.5rem;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.form button {
+    padding: 0.7rem 1rem;
+    margin: 0.5rem;
+    border: 1px solid var(--color-secondary);
+    border-radius: 1rem;
+    background-color: var(--color-accet);
+}
+
+.form button:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-accet);
+}
+
+.box-two {
+    display: flex;
+    width: 85%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.group-box {
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form input , textarea , select{
+    border-radius: 1rem;
+    height: 2.2rem;
+    padding: 0.5rem 0.7rem;
+    text-align: center;
+    border: 1px solid var(--input-color);
+    outline: 0;
+    z-index: 0;
+}
+
+textarea {
+    text-align: start;
+    height: 100%;
+}
+
+.box-one input{
+    width: 150%;
+}
+
+.box-two input , .box-two select {
+    width: 110%;
+}

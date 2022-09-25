@@ -1,7 +1,48 @@
-@extends('layouts.app')
+@extends('layouts.index')
 
-@section('content')
-<div class="container">
+@section('css_links')
+<link rel="stylesheet" href="/css/registerSeller.css">
+@endsection
+@section('main')
+
+<div class="main">
+    <form class="form" action="{{ route('registerSeller') }}" method="POST">
+        @method('POST')
+        @csrf
+        <h4>ثبت نام فروشنده</h4>
+        <hr style="width: 95%;">
+        <div class="group-box box-one">
+            <label for="">نام فروشگاه</label>
+            <input class="input-form" name="store_name" placeholder="نام فروشگاه خود را وارد کنید" type="text">
+        </div>
+
+        <div class="box-two">
+            <div class="group-box">
+                <label for="">دسته بندی کالای ارایه دهنده</label>
+                <select class="input-form" name="category_id" id="">
+                    <option></option>
+                    @foreach($categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="group-box">
+                <label for="">شماره موبایل</label>
+                <input class="input-form" type="number" name="number" placeholder="شماره موبایل خود را وارد کنید">
+            </div>
+
+        </div>
+
+        <div class="group-box">
+            <label for="">ادرس فروشگاه</label>
+            <textarea name="address" placeholder="ادرس فروشگاه خود را وارد کنید" id="" cols="45" rows="10"></textarea>
+        </div>
+
+        <button class="button" type="submit">ثبت نام</button>
+    </form>
+</div>
+
+<!-- <div class="container">
     <h2>ثبت نام فروشنده</h2>
 
     <form action="{{ route('registerSeller') }}" method="POST">
@@ -26,5 +67,5 @@
     @if(session()->has('registered'))
     <span>{{session('registered')}}</span>
     @endif
-</div>
+</div> -->
 @endsection

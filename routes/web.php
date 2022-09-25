@@ -7,7 +7,9 @@ use App\Http\Controllers\SellerController;
 use App\Http\Controllers\User\DeliveredController;
 use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\ProfileController;
+use App\Models\Product;
 use App\Models\Seller;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,20 +26,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/category/{category}', [HomeController::class, 'category'])->name('category');
+Route::get('/search', function () {
+    dd(Product::search('u')->get());
+})->name('search');
 
-Route::prefix('product')->group(function () {
-    Route::get('/{product}', [ProductController::class, 'product']);
-    Route::post('/{product}', [ProductController::class, 'buy'])->name('buyProduct');
+Route::controller(ProductController::class)->prefix('product')->group(function () {
+    Route::get('/{product}', 'product')->name('product');
+    Route::post('/{product}', 'buy')->name('buyProduct');
 });
-Route::middleware('auth')->prefix('cart')->group(function () {
-    Route::get('/', [CartController::class, 'show'])->name('cart');
-    Route::delete('/{cart}', [CartController::class, 'delete']);
-    Route::post('/', [CartController::class, 'buy']);
+
+Route::middleware('auth')->controller(CartController::class)->prefix('cart')->group(function () {
+    Route::get('/', 'show')->name('cart');
+    Route::delete('/{cart}', 'delete')->name('deleteCart');
+    Route::post('/', 'buy');
 });
-Route::middleware('auth')->prefix('comment')->group(function () {
-    Route::post('/{product_id}', [CommentController::class, 'create']);
-    Route::post('/like/{comment}', [CommentController::class, 'like'])->name('comment.like');
-    Route::post('/dislike/{comment}', [CommentController::class, 'dislike'])->name('comment.dislike');
+Route::middleware('auth')->controller(CommentController::class)->prefix('comment')->group(function () {
+    Route::post('/{product_id}', 'create');
+    Route::post('/like/{comment}', 'like')->name('comment.like');
+    Route::post('/dislike/{comment}', 'dislike')->name('comment.dislike');
 });
 
 Route::middleware('auth')->prefix('user')->group(function () {
@@ -46,16 +52,17 @@ Route::middleware('auth')->prefix('user')->group(function () {
     Route::patch('/profile/{user}', [ProfileController::class, 'update'])->name('updateProfile');
     Route::get('/favorites', [ProfileController::class, 'favorites'])->name('favorites');
     Route::post('/favorites/{id}', [ProfileController::class, 'addFavorite'])->name('addFavorite');
-    Route::get('/delivered', [DeliveredController::class, 'delivered'])->middleware('auth')->name('delivered');
+    Route::get('/delivered', [DeliveredController::class, 'delivered'])->name('delivered');
+    Route::get('/delivered/{user}/{order}', [DeliveredController::class, 'deliveredOrder'])->name('deliveredOrder');
 });
 
-Route::middleware('auth')->prefix('seller')->group(function () {
-    Route::get('/products', [SellerController::class,  'products'])->name('sellerProducts');
-    Route::get('/sold', [SellerController::class, 'sold'])->name('sellerSold');
-    Route::delete('/products/{product}', [SellerController::class,  'deleteProduct'])->name('deleteProduct');
-    Route::get('/register', [SellerController::class, 'showRegisterationForm'])->name('showRegisterSeller');
-    Route::post('/', [SellerController::class, 'register'])->name('registerSeller');
-    Route::get('/create', [SellerController::class, 'store'])->name('formCreateProduct');
-    Route::post('/create', [SellerController::class, 'create'])->name('createProduct');
+Route::middleware('auth')->controller(SellerController::class)->prefix('seller')->group(function () {
+    Route::get('/products', 'products')->name('sellerProducts');
+    Route::get('/sold', 'sold')->name('sellerSold');
+    Route::delete('/products/{product}', 'deleteProduct')->name('deleteProduct');
+    Route::get('/register', 'showRegisterationForm')->name('showRegisterSeller');
+    Route::post('/', 'register')->name('registerSeller');
+    Route::get('/create', 'store')->name('formCreateProduct');
+    Route::post('/create', 'create')->name('createProduct');
 });
 Auth::routes();

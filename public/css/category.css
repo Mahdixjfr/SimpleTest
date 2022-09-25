@@ -1,0 +1,135 @@
+.main {
+    display: grid;
+    grid-template: auto 15vh / 23fr 77fr;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0.5rem;
+}
+
+.categories {
+    padding: .7rem 1rem;
+    position: fixed;
+    grid-row: 1/2;
+    grid-column: 1/2;
+    border: 1px solid var(--border-color);
+    border-radius: 2rem;
+    width: 22vw;
+    height: 55vh;
+}
+
+.category {
+    grid-row: 1/ 2;
+    grid-column: 2/3;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.paginate {
+    grid-row: 2 /3;
+    grid-column: 2 /3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.list {
+    height: 75%;
+    list-style-type: none;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+a:hover {
+    color: var(--color-primary);
+}
+.list-item {
+    color: var(--color-primary);
+    transition: transform 0.5s;
+}
+.list-item:hover {
+    transform: translateX(-0.6rem);
+    color: var(--color-primary);
+}
+
+.card {
+    width: 32%;
+    height: 19rem;
+    border-radius: 1.5rem;
+    border: 1px solid var(--border-color);
+    margin: 0.3rem;
+    padding: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.card-image {
+    width: 75%;
+    height: 70%;
+}
+
+.img {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.4s ease-out;
+}
+
+.img:hover {
+    transform: scale(1.04);
+}
+
+.card-inf {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.category-active > a{
+    color: var(--color-secondary);
+}
+
+.product-name {
+    color: var(--color-primary);
+    font-weight: 500;
+}
+
+.product-price {
+    align-self: flex-end;
+    font-size: 1.1rem;
+    color: var(--color-primary);
+}
+
+.pagination {
+    width: 25vw;
+    height: 10vh;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-item {
+    width: 25%;
+    margin: 0.2rem;
+}
+
+.page-link {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* background-color: var(--color-secondary); */
+    border-radius: 0.7rem;
+    border: 1px solid var(--border-color) !important;
+    color: var(--color-primary) !important;
+}
+.page-item.active .page-link {
+    background-color: var(--color-secondary);
+    border: none !important;
+    color: #fff !important;
+}

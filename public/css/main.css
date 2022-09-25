@@ -2,18 +2,29 @@
     grid-area: main;
     justify-self: center;
     border-radius: 3rem;
-    width: 93vw;
+    width: 100%;
 }
 
 
 .bg-one , .bg-two {
-    margin-bottom: 2rem;
+    padding: 1rem 0;
     display: flex;
-    justify-content: space-around;
+    flex-direction: row;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 1rem;
 }
 
+.bg-one > * , .bg-two > *{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+
+
 .bg-image {
-    margin: 0.5rem;
+    width: 97%;
     border-radius: 2rem;
     transition: filter 0.4s ;
 }
@@ -23,19 +34,15 @@
 }
 
 .owl-stage-outer {
-    position: relative;
-    right: 5rem;
+    width: 100%;
 }
 
 .carousel {
     background-color: var(--color-accet);
     z-index: 0 !important;
-    width: 85vw !important;
+    width: 95vw !important;
     box-sizing : border-box;
-    display: flex !important;
-    justify-content: center ;
-    align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .item {
@@ -43,10 +50,8 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid var(--color-secondary);
+    border: 1px solid var(--border-color);
     border-radius: 1.5rem;
-    width: 15vw;
-    height: 30vh;
     background-color: #fff;
     margin: 0.5rem;
     padding: 0.5rem;
@@ -65,6 +70,13 @@
 
 .carousel-price::after {
     content: '\200e';
+}
+
+.carousel-image {
+    transition: transform 0.4s ;
+}
+.carousel-image:hover {
+    transform: scale(1.08);
 }
 
 .ltr {

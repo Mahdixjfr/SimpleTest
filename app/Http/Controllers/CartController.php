@@ -17,13 +17,14 @@ class CartController extends Controller
         $cart = Cart::where('user_id', userId())->orderBy('id', 'desc')->get();
         foreach ($cart as $buy) {
             $product = $buy->product()->first();
-            $number = $buy->number;
             $price = unformatNumber($product->price);
+            $number = $buy->number;
+            $product->number = $number;
+            $product->cart_id = $buy->id;
+            $this->list[] = $product;
             $this->total = $this->total + $price * $number;
-            $this->list[] = ['id' => $buy->id, 'name' => $product->name, 'price' => $product->price, 'number' => $number];
         };
-        // $total = number_format($this->total, 0, '.', ',');
-        return view('Product/cart', [
+        return view('User/cart', [
             'list' => $this->list,
             'total' => number_format($this->total)
         ]);

@@ -19,7 +19,7 @@ class HomeController extends Controller
 
     public function category(Category $category)
     {
-        $products = $category->products()->paginate(15);
-        return view('category', compact('products'));
+        $products = $category->products()->paginate(21);
+        return view('category', compact('products', 'category'));
     }
 }

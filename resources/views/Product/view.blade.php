@@ -7,28 +7,34 @@
 <div class="main">
     <div class="product-img">
         <div class="heart">
-            <button class="button heart"><i class="fa-regular fa-heart fa-2x"></i></button>
+            <form action="{{route('addFavorite' , ['id' => $main_product->id])}}" method="POST">
+                @csrf
+                @method('post')
+                <button name="result" id="heart-btn" type="submit" value="addFavorite" class="heart button"><i id="heart-icon" class="fa-regular fa-heart fa-2x"></i></button>
+            </form>
         </div>
-        <img class="img" src="/storage/photo/{{ $product->photo }}" alt="">
+        <img class="img" src="/storage/photo/{{ $main_product->photo }}" alt="">
     </div>
     <div class="product-inf">
-        <h3 class="inf-item">لپ تاپ hp</h3>
-        <p class="inf-item inf">فروشنده : لپ تاپ استار</p>
-        <p class="inf-item inf">دسته بندی : لپ تاپ</p>
-        <p class="inf-item inf">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime
-            eligendi tempora natus vero repudiandae, facilis magni aperiam enim
-            error sint illo ea reprehenderit vel voluptas ab in maiores dolorem
-            deserunt.</p>
+        <h3 class="inf-item">{{$main_product->name}}</h3>
+        <p class="inf-item">فروشنده : {{showName($main_product->seller_id)}}</p>
+        <p class="inf-item">دسته بندی : {{getCategoryName($main_product->category_id)}}</p>
+        <p class="inf-item">{{$main_product->description}}</p>
     </div>
     <div class="product-buy">
         <div class="buy-box">
-            <p class="inf">Lorem, ipsum.</p>
-            <p class="inf">Lorem, ipsum.</p>
-            <p class="inf"><span class="price">{{$product->price}}</span> <span class="toman">تومان</span></p>
+            <p class="inf">{{$main_product->name}}</p>
+            <p class="inf"> موجودی : {{$main_product->inventory}}</p>
+            <p class="inf"><span class="price">{{$main_product->price}}</span> <span class="toman">تومان</span></p>
             <button id="btn-buy" onclick="buy()" class="btn-buy">افزودن به سبد خرید</button>
             <div id="buy" style="display: none;" class="buy">
-                <form class="form-buy" action="{{ route('buyProduct' , ['product' => $product->id]) }}" method="POST">
-                    <input type="number" id="input-buy" name="number" class="input-buy" value="1">
+                <form class="form-confirm" action="{{ route('buyProduct' , ['product' => $main_product->id]) }}" method="POST">
+                    <input type="number" id="input-buy" name="number" class="input-form @error('number')  is-invalid @enderror" value="1">
+                    <div class="invalid-feedback center-t">
+                        @error('number')
+                        {{$message}}
+                        @enderror
+                    </div>
                     @method('post')
                     @csrf
                     <button type="submit" class="btn-confirm">تایید</button>
@@ -54,46 +60,70 @@
             <button id="add-comment" onclick="create_comment()" class="add-comment">افزودن دیدگاه</button>
         </div>
         <div id="create-comment" class="create-comment" style="display: none;">
-            <form class="form-comment" action="" method="post">
-                <textarea class="input-comment" name="comment" id="" cols="30" rows="10" placeholder="نظر خود را بنویسید"></textarea>
+            <form class="form-comment" action="/comment/{{$main_product->id}}" method="post">
+                @csrf
+                @method('post')
+                <textarea class="input-form @error('comment') is-invalid  @enderror" name="comment" id="" cols="30" rows="10" placeholder="نظر خود را بنویسید"></textarea>
+                <div class="invalid-feedback center-t">
+                    @error('comment')
+                    {{$message}}
+                    @enderror
+                </div>
                 <button type="submit" class="btn-confirm btn-comment">تایید</button>
             </form>
         </div>
         <div class="comments">
+            @foreach($comments as $comment)
             <div class="comment">
                 <div class="header-comment">
-                    <h6>علی قلی</h6>
-                    <span class="time">14/23/23</span>
+                    <h6>{{$comment->user()->first()->name}}</h6>
+                    <span class="time">{{$comment->updated_at}}</span>
                 </div>
                 <div class="body-comment">
-                    <p class="comment-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                        Ipsam delectus quisquam natus qui modi velit.
-                    </p>
+                    <p class="comment-text">{{$comment->comment}}</p>
                     <div class="action-comment">
-                        <button class="button like"><span class="count-comment">2</span> <i class="fa-regular fa-thumbs-up fa-2x"></i></button>
-                        <button class="button dislike"><span class="count-comment">4</span> <i class="fa-regular fa-thumbs-down fa-2x"></i></button>
+                        <form method="POST" action="{{ route('comment.like' , ['comment' => $comment->id]) }}">
+                            @csrf
+                            @method('post')
+                            <button class="button like"><span class="count-comment">{{$comment->like}}</span> <i class="fa-regular fa-thumbs-up fa-2x"></i></button>
+                        </form>
+                        <form method="POST" action="{{ route('comment.dislike' , ['comment' => $comment->id]) }}">
+                            @csrf
+                            @method('post')
+                            <button class="button dislike"><span class="count-comment">{{$comment->dislike}}</span> <i class="fa-regular fa-thumbs-down fa-2x"></i></button>
+                        </form>
+
                     </div>
                 </div>
             </div>
-            <div class="comment">
-                <div class="header-comment">
-                    <h6>علی قلی</h6>
-                    <span class="time">14/23/23</span>
-                </div>
-                <div class="body-comment">
-                    <p class="comment-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                        Ipsam delectus quisquam natus qui modi velit.
-                    </p>
-                    <div class="action-comment">
-                        <button class="button like"><span class="count-comment">2</span> <i class="fa-regular fa-thumbs-up fa-2x"></i></button>
-                        <button class="button dislike"><span class="count-comment">4</span> <i class="fa-regular fa-thumbs-down fa-2x"></i></button>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
 
+@error('number')
+<script>
+    document.getElementById("btn-buy").style.display = "none";
+    document.getElementById("buy").style.display = "block";
+</script>
+@enderror
+
+@error('comment')
+<script>
+    document.getElementById("create-comment").style.display = "block";
+</script>
+@enderror
+
+@if($check_favorite == true)
+<script>
+    $(document).ready(function() {
+        const heart = document.getElementById("heart-icon");
+        const heart_btn = document.getElementById("heart-btn");
+        heart.className = "fa-solid fa-heart fa-2x";
+        heart_btn.value = "deleteFavorite";
+    });
+</script>
+@endif
 
 <script>
     function create_comment() {

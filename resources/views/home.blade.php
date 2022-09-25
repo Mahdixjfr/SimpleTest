@@ -62,7 +62,7 @@
         $('.owl-carousel').owlCarousel({
             rtl: true,
             loop: true,
-            margin: 0,
+            margin: 1,
             nav: true,
             responsive: {
                 0: {

@@ -66,19 +66,16 @@
     color: var(--color-primary);
 }
 .buy-box {
-    /* width: 80%;
-    height: 95%; */
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items:center;
-    border: 1px solid var(--color-primary);
+    border: 1px solid var(--border-color);
     border-radius: 1rem;
     background-color: var(--color-accet);
     width: 18vw;
     height: 40vh;
     position: fixed;
-    /* left: 0; */
 }
 
 .buy {
@@ -88,28 +85,7 @@
     justify-content: center;
     align-items: center;
 }
-.btn-buy {
-    border: none;
-    border-radius: 1rem;
-    width: 80%;
-    padding: 0.5rem;
-    color: var(--color-accet);
-    background-color: var(--color-secondary);
-    animation-name: buy;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease;
-}
 
-@keyframes buy {
-    50% {
-        box-shadow: 0 0 1.2rem var(--color-secondary);
-    }
-
-    100% {
-        box-shadow: none;
-    }
-}
 
 
 .title-comments {
@@ -165,6 +141,8 @@
 
 .action-comment {
     align-self: flex-end;
+    display: flex;
+    flex-direction: row;
 }
 
 .like {
@@ -199,7 +177,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid var(--color-secondary);
+    border: 1px solid var(--border-color);
     border-radius: 1.5rem;
     width: 15vw;
     background-color: #fff;
@@ -244,32 +222,23 @@
     transform: scale(1.08);
 }
 
-.input-buy {
-    border: 1px solid var(--color-secondary);
-    border-radius: 1rem;
-    padding: 0.5rem;
-}
 .input-buy:focus {
-    border: 1px solid var(--color-secondary);
+    border: 1px solid var(--input-color);
     outline: 0;
 }
 
-.form-buy {
+.form-confirm {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.btn-confirm {
-    margin: 0.5rem;
-    border: none;
-    border-radius: 2rem;
-    padding: 0.5rem 0.8rem;
-    color: var(--color-accet);
-    width: 65%;
-    background: linear-gradient(94deg, rgba(51,190,50,1) 23%, rgba(17,191,173,1) 100%);
+.btn-buy {
+    width: 80%;
 }
+
+
 
 .btn-comment {
     width: 15%;
@@ -282,16 +251,14 @@
 .form-comment {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
 }
 
-.input-comment {
+.form-comment .input-form {
     margin: 0.5rem 1rem;
     width: 70%;
     display: block;
-    border: 1px solid var(--color-primary);
-    border-radius: 1rem;
-    padding: 1rem;
+    color: var(--color-primary);
 }
 
 .input-comment:focus {

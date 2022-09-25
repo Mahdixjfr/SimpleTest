@@ -4,6 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileRequest;
+use App\Models\Cart;
+use App\Models\Delivered;
 use App\Models\Favorite;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,36 +19,51 @@ class ProfileController extends Controller
 
     public $favorite_products = [];
     protected $password;
+    protected $orders = [
+        'favorite_products_number' => 0,
+        'delivereds_number' => 0,
+        'carts_number' => 0
+    ];
 
     public function favorites()
     {
+        $user = auth()->user();
         $favorites_products = Favorite::where('user_id', userId());
         if ($favorites_products->count() > 0) {
             foreach ($favorites_products->get() as $favorite) {
                 $this->favorite_products[] = $favorite->product()->first();
             }
         }
-        return view('User/favorites', ['products' => $this->favorite_products]);
+        return view('User/favorites', ['products' => $this->favorite_products, 'user' => $user]);
     }
 
     public function addFavorite($product_id)
     {
         $result = Favorite::where('user_id', userId())->where('product_id', $product_id);
-        if ($result->count() > 0) {
-            $result->first()->delete();
+        if (request('result') == 'addFavorite') {
+            Favorite::create([
+                'user_id' => userId(),
+                'product_id' => $product_id
+            ]);
             return back();
         }
-        Favorite::create([
-            'user_id' => userId(),
-            'product_id' => $product_id
-        ]);
+        $result->first()->delete();
         return back();
     }
 
     public function profile()
     {
         $user = Auth::user();
-        return view('User/Profile/profile', compact('user'));
+        $favorite_products = [];
+        $favorite_products_id = Favorite::where('user_id', $user->id)->orderBy('id', 'desc')->take(6)->get();
+        $orders['favorite_products_number'] = $favorite_products_id->count();
+        $delivered = Delivered::where('user_id', $user->id);
+        $orders['delivereds_number'] = ($delivered->count() > 0) ? $delivered->orderBy('id', 'desc')->first()->order : 0;
+        $orders['carts_number'] = Cart::where('user_id', $user->id)->count();
+        foreach ($favorite_products_id as $product) {
+            $favorite_products[] = $product->product()->first();
+        }
+        return view('User/Profile/profile', compact('user', 'favorite_products', 'orders'));
     }
 
     public function edit()

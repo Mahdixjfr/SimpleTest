@@ -1,7 +1,38 @@
-@extends('layouts.app')
+@extends('layouts.index')
 
-@section('content')
-<div class="container">
+@section('css_links')
+<link rel="stylesheet" href="/css/auth.css">
+@endsection
+@section('main')
+
+<div class="main">
+    <form action="{{ route('login') }}" method="POST" class="auth-form login">
+        @csrf
+        @method('post')
+        <div class="shape login-shape-one shape-one"></div>
+        <div class="shape login-shape-two shape-two"></div>
+        <h2 class="title">ورود</h2>
+        <div>
+            <label for="">ایمیل :</label>
+            <input type="email" class="input-form" name="email">
+        </div>
+        <div>
+            <label for="">رمز ورود :</label>
+            <input type="password" class="input-form" name="password">
+        </div>
+        <div class="forget-password">
+            <a href="" class="forget-link">فراموشی رمزعبور</a>
+            <span>|</span>
+            <a href="{{ route('register') }}" class="forget-link">ثبت نام نکرده اید!</a>
+        </div>
+        <button class="btn-auth" type="submit">ورود</button>
+    </form>
+</div>
+
+
+
+
+<!-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -69,5 +100,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 @endsection

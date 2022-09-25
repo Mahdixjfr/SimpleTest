@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\UserType;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\Seller;
 use App\Models\User;
@@ -9,6 +11,13 @@ if (!function_exists('showName')) {
     {
         $seller = Seller::find($id);
         return $seller->store_name;
+    }
+}
+
+if (!function_exists('getCategoryName')) {
+    function getCategoryName($id)
+    {
+        return $category_name = Category::find($id)->name;
     }
 }
 
@@ -60,7 +69,7 @@ if (!function_exists('checkSeller')) {
     function checkSeller()
     {
         $user = findUser(userId());
-        if ($user->type == 'seller') {
+        if ($user->type == UserType::Seller) {
             return true;
         } else {
             return false;

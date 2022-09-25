@@ -1,7 +1,44 @@
-@extends('layouts.app')
+@extends('layouts.index')
+@section('css_links')
+<link rel="stylesheet" href="/css/category.css">
+@endsection
+@section('main')
+<div class="main">
+    <div class="categories">
+        <h4 class="title center">دسته بندی ها</h4>
+        <ul class="list">
 
-@section('content')
-<div class="container">
+            @php
+            $main_category_id = $category->id;
+            @endphp
+            @foreach($categories as $category)
+            <li class="{{ ($main_category_id == $category->id) ? 'category-active' :  '' }} list-item"><a href="{{ route('category' , ['category' => $category->id]) }}">{{$category->name}}</a></li>
+            @endforeach
+        </ul>
+    </div>
+    <div class="category">
+        @foreach($products as $product)
+        <div class="card">
+            <div class="card-image">
+                <a href="/product/{{$product->id}}"><img class="img" src="/storage/photo/{{$product->photo}}" alt=""></a>
+            </div>
+            <div class="card-inf">
+                <h5 class="product-name">{{$product->name}}</h5>
+                <p class="product-price">{{$product->price}} <span class="ltr toman">تومان</span></p>
+            </div>
+        </div>
+        @endforeach
+
+    </div>
+    <div class="paginate">
+        <div class="d-flex justify-content-center">
+            {!! $products->links() !!}
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -44,5 +81,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 @endsection

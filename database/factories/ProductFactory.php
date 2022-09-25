@@ -19,7 +19,7 @@ class ProductFactory extends Factory
         return [
             'name' => $this->faker->unique()->word(),
             'category_id' => rand(1, 4),
-            'photo' => rand(1, 5) . 'laptop.jpg',
+            'photo' => rand(1, 11) . 'laptop.jpg',
             'description' => $this->faker->text(100),
             'seller_id' => 1,
             'price' => rand(100000, 1000000),
