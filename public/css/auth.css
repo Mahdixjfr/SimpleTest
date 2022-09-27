@@ -1,6 +1,6 @@
 .main {
     width: 100%;
-    height: 88vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -9,7 +9,7 @@
 
 .auth-form {
     position: relative;
-    border-radius: 3rem;
+    border-radius: 2.2rem;
     padding: 2rem;
     box-shadow: 0 0 1rem rgb(158, 149, 149);
     display: flex;
@@ -21,7 +21,8 @@
 
 .login {
     width: 30%;
-    height: 80%;
+    height: 100%;
+    margin-bottom: 40vh;
 }
 
 .register {
@@ -34,6 +35,45 @@
     align-self: center;
 }
 
+.title-head .title {
+    color: var(--color-accet);
+}
+
+.register-phone {
+    width: 25vw;
+    height: 100%;
+    border-radius: 1rem;
+    padding: 0;
+    position: relative;
+    margin-bottom: 40vh;
+    /* bottom: 15%; */
+}
+
+.pad {
+    padding: 1rem 0.5rem 1rem;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pad label {
+    align-self: flex-start;
+}
+
+.pad button {
+    width: 60%;
+}
+
+.register-number  .input-form {
+    border-radius: 0.5rem;
+}
+
+.title-head {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--color-secondary);
+}
 
 .forget-password {
     margin: 0.5rem 0;
@@ -90,10 +130,10 @@
 }
 
 .login-shape-one {
-    bottom: 24rem;
+    bottom: 78%;
 }
 .login-shape-two {
-    bottom: 8rem;
+    bottom: 13%;
 }
 .register-shape-one {
     bottom: 28rem;
