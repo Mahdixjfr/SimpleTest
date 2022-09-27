@@ -6,7 +6,7 @@
 @section('main')
 
 <div class="main">
-    <form action="{{ route('register') }}" method="POST" class="auth-form register">
+    <form id="register" style="display: none;" action="{{ route('register') }}" method="POST" class="auth-form register">
         @csrf
         @method('post')
         <div class="shape register-shape-one shape-one"></div>
@@ -14,99 +14,70 @@
         <h2 class="title">ثبت نام</h2>
         <div>
             <label for="">نام :</label>
-            <input type="tetx" class="input-form" name="name">
+            <input type="tetx" class="input-form @error('name') is-invalid @enderror" name="name">
+            <div class="invalid-feedback center-t">
+                @error('name')
+                {{$message}}
+                @enderror
+            </div>
         </div>
         <div>
             <label for="">ایمیل :</label>
-            <input type="email" class="input-form" name="email">
+            <input type="email" class="input-form @error('email') is-invalid @enderror" name="email">
+            <div class="invalid-feedback center-t">
+                @error('email')
+                {{$message}}
+                @enderror
+            </div>
         </div>
         <div>
             <label for="">رمز ورود :</label>
-            <input type="password" class="input-form" name="password">
+            <input type="password" class="input-form @error('password') is-invalid @enderror" name="password">
+            <div class="invalid-feedback center-t">
+                @error('password')
+                {{$message}}
+                @enderror
+            </div>
         </div>
         <div>
             <label for="">تکرار رمز ورود :</label>
-            <input type="password" class="input-form" name="password_confirmation">
+            <input type="password" class="input-form @error('password_confirmation') is-invalid @enderror" name="password_confirmation">
+            <div class="invalid-feedback center-t">
+                @error('password_confirmation')
+                {{$message}}
+                @enderror
+            </div>
         </div>
         <div class="forget-password">
             <a href="{{ route('login') }}" class="forget-link">!!ثبت نام کرده ام!!</a>
         </div>
-        <button class="btn-auth" type="submit">ثبت نام</button>
+        <button id="phone_btn" name="phone" class="btn-auth" type="submit">ثبت نام</button>
+    </form>
+    <form id="register_phone" action="{{ route('register_phone') }}" method="GET" class="auth-form register-phone">
+        @csrf
+        @method('get')
+        <div class="title-head">
+            <h4 class="title center-t">ثبت نام</h4>
+        </div>
+        <div class="pad">
+            <label for="">شماره موبایل</label>
+            <input type="number" name="phone" placeholder="شماره موبایل خود را وارد کنید " class="input-form @error('phone') is-invalid @enderror">
+            <div class="invalid-feedback center-t">
+                @error('phone')
+                {{$message}}
+                @enderror
+            </div>
+            <button class="btn-auth" type="submit">ثبت نام</button>
+        </div>
     </form>
 </div>
 
 
-<!-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
+@if($result == true)
+<script>
+    document.getElementById('register').style.display = "flex";
+    document.getElementById('phone_btn').value = "{{$phone['phone']}}";
+    document.getElementById('register_phone').style.display = "none";
+</script>
+@endif
 @endsection

@@ -28,14 +28,14 @@
             </div>
             <div class="group-box">
                 <label for="">شماره موبایل</label>
-                <input class="input-form" type="number" name="number" placeholder="شماره موبایل خود را وارد کنید">
+                <input class="input-form" type="number" name="phone" placeholder="شماره موبایل خود را وارد کنید">
             </div>
 
         </div>
 
         <div class="group-box">
             <label for="">ادرس فروشگاه</label>
-            <textarea name="address" placeholder="ادرس فروشگاه خود را وارد کنید" id="" cols="45" rows="10"></textarea>
+            <textarea name="address" placeholder="ادرس فروشگاه خود را وارد کنید" id="" cols="40" rows="7"></textarea>
         </div>
 
         <button class="button" type="submit">ثبت نام</button>

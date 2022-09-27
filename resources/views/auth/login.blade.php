@@ -14,11 +14,21 @@
         <h2 class="title">ورود</h2>
         <div>
             <label for="">ایمیل :</label>
-            <input type="email" class="input-form" name="email">
+            <input type="email" class="input-form @error('email') is-invalid @enderror" name="email">
+            <div class="invalid-feedback center-t">
+                @error('email')
+                {{$message}}
+                @enderror
+            </div>
         </div>
         <div>
             <label for="">رمز ورود :</label>
-            <input type="password" class="input-form" name="password">
+            <input type="password" class="input-form @error('password') is-invalid @enderror" name="password">
+            <div class="invalid-feedback center-t">
+                @error('password')
+                {{$message}}
+                @enderror
+            </div>
         </div>
         <div class="forget-password">
             <a href="" class="forget-link">فراموشی رمزعبور</a>

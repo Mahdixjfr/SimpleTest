@@ -25,7 +25,7 @@ class SellerRegisterRequest extends FormRequest
     {
         return [
             'store_name' => ['required', 'min:4', 'max:20', 'string'],
-            'number' => ['required', 'min:11', 'max:11', 'unique:sellers', 'string'],
+            'phone' => ['required', 'regex:/(09)[0-9]{9}/', 'unique:sellers'],
             'address' => ['required', 'min:10', 'max:150', 'string'],
             'category_id' => ['required']
         ];
