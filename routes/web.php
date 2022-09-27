@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
@@ -30,6 +31,10 @@ Route::get('/search', function () {
     dd(Product::search('u')->get());
 })->name('search');
 
+Route::get('/product/buy', [ProductController::class, 'mainBuy']);
+
+Route::get('/register_phone', [RegisterController::class, 'registerPhone'])->name('register_phone');
+
 Route::controller(ProductController::class)->prefix('product')->group(function () {
     Route::get('/{product}', 'product')->name('product');
     Route::post('/{product}', 'buy')->name('buyProduct');
@@ -38,6 +43,7 @@ Route::controller(ProductController::class)->prefix('product')->group(function (
 Route::middleware('auth')->controller(CartController::class)->prefix('cart')->group(function () {
     Route::get('/', 'show')->name('cart');
     Route::delete('/{cart}', 'delete')->name('deleteCart');
+    Route::get('/buy', 'formBuy')->name('formBuy');
     Route::post('/', 'buy');
 });
 Route::middleware('auth')->controller(CommentController::class)->prefix('comment')->group(function () {
