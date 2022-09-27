@@ -98,3 +98,10 @@ if (!function_exists('countTotal')) {
         return number_format($total);
     }
 }
+
+if (!function_exists('time')) {
+    function time($time)
+    {
+        return $time->diffForHumans();
+    }
+}
