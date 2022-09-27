@@ -43,7 +43,9 @@ a:hover {
     grid-area: header;
 }
 
-
+.main {
+    margin-bottom : 1rem; 
+}
 
 .footer {
     grid-area: footer;
@@ -314,6 +316,10 @@ label {
     animation-timing-function: ease;
 }
 
+.btn-buy:hover {
+    color: var(--color-accet);
+}
+
 @keyframes buy {
     50% {
         box-shadow: 0 0 1.2rem var(--color-secondary);
@@ -372,6 +378,15 @@ label {
     grid-column: 1/2;
     height: 85vh;
     border: 1px solid var(--border-color);
+}
+
+.warning {
+    padding: 0.5rem 0.7rem;
+    border: 1px solid var(--border-color);
+    margin: 0.5rem;
+    width: 90%;
+    border-radius: 1rem;
+    color: var(--color-secondary);
 }
 /*  */
 
