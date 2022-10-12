@@ -16,7 +16,7 @@ class SellerController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth.seller')->except(['showRegisterationForm', 'register']);
+        $this->middleware('auth.seller');
     }
     public function findCategorySeller()
     {
@@ -32,26 +32,12 @@ class SellerController extends Controller
     public function register(SellerRegisterRequest $request)
     {
         $validated_data = $request->all();
-        if ($this->checkRegistered(userId())) {
-            $list = ['user_id' => userId()];
-            $validated_data = array_merge($validated_data, $list);
-            Seller::create($validated_data);
-            $user = findUser(userId());
-            $user->update(['type' => UserType::Seller]);
-            return redirect('/');
-        } else {
-            return back()->with('registered', 'شما قبلا ثبت نام کرده اید');
-        }
-    }
-
-    public function checkRegistered($id)
-    {
-        $seller = Seller::where('user_id', $id)->count();
-        if ($seller > 0) {
-            return false;
-        } else {
-            return true;
-        }
+        $list = ['user_id' => userId()];
+        $validated_data = array_merge($validated_data, $list);
+        Seller::create($validated_data);
+        $user = findUser(userId());
+        $user->update(['type' => UserType::Seller]);
+        return redirect('/');
     }
 
     public function store()

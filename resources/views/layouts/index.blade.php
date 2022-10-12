@@ -15,8 +15,8 @@
     @yield('css_links')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="/js/owlcarousel/dist/owl.carousel.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
     <script src="https://kit.fontawesome.com/75a773a8a3.js" crossorigin="anonymous"></script>
 
     <title>ایران استار</title>
@@ -33,7 +33,7 @@
                         </a>
                     </div>
                     <div class="search">
-                        <form action="" method="get">
+                        <form class="search-form" action="" method="get">
                             <button class="search-btn" type="submit"><i class=" fa-solid fa-magnifying-glass"></i></button>
                             <input id="search" type="text" name="search" placeholder="جستجو" class="input-search">
                         </form>
@@ -64,7 +64,48 @@
                             </div>
                         </div>
                         <div class="cart-icon">
-                            <a href="{{ route('cart') }}"><i id="cart-icon" class="fa-solid fa-cart-shopping fa-2x"></i></a>
+
+                            <!-- <i id="cart-icon" class="fa-solid fa-cart-shopping fa-2x"></i> -->
+                            <div class="cart-div">
+                                <button class="dropbtn">Dropdown</button>
+                                <div class="dropdown-content">
+                                    <a href="{{ route('cart') }}">مشاهده سبد خرید</a>
+                                    <div class="carts-box">
+                                        @php
+                                        $total = 0;
+                                        @endphp
+                                        @foreach($header_carts as $header_cart)
+                                        @php
+                                        $total = $total + unformatNumber($header_cart->product()->first()->price) * $header_cart->number;
+                                        @endphp
+                                        <div class="cart-box">
+                                            <div class="cart-group">
+                                                <div class="img-box-h">
+                                                    <a href="{{ route('product' , ['product' => $header_cart->product()->first()->id]) }}"><img class="img" src="/storage/photo/{{$header_cart->product()->first()->photo}}" alt=""></a>
+                                                </div>
+                                                <form action="{{ route('deleteCart' , ['cart' => $header_cart->id]) }}" method="POST">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button class="btn-delete">حذف</button>
+                                                </form>
+
+                                            </div>
+                                            <div class="cart-group">
+                                                <div class="inf-box-h">
+                                                    <h6>{{$header_cart->product()->first()->name}}</h6>
+                                                    <p class="inf">تعداد : {{$header_cart->number}}</p>
+                                                </div>
+                                                <p class="inf"><span class="price">{{$header_cart->product()->first()->price}}</span> <span class="toman"> تومان </span></p>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="buy-box-h">
+                                        <p class="inf"><span>مجموع : </span> <span class="price">{{number_format($total)}}</span> <span class="toman"> تومان </span></p>
+                                        <a href="{{ route('formBuy') }}" class="buy-carts">ثبت سفارش</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         @else
                         <div class="sign">
@@ -72,8 +113,6 @@
                         </div>
                         @endif
                     </div>
-
-
                 </header>
             </div>
             <ul class="nav-bar">
@@ -105,16 +144,46 @@
             </ul>
         </div>
         @yield('main')
-        <div class="footer">
-            <footer></footer>
-        </div>
+        <footer>
+            <div class="head-footer">
+                <a href="/">
+                    <h3 class="header-title"><span>IRAN</span> <span class="star">STAR</span></h3>
+                </a>
+                <hr style="width: 100%;">
+            </div>
+            <div class="body-footer">
+                <div class="group">
+                    <h6 class="title">با ایران استار</h6>
+                    <a href="">فروش در دیجی کالا</a>
+                    <a href="">فرصت های شغلی</a>
+                    <a href="">درباره دیجی کالا</a>
+                    <a href="">گزارش تخلف</a>
+                </div>
+                <div class="group">
+                    <h6 class="title">خدمات مشتریان</h6>
+                    <a href="">پاسخ به پرسش های متداول</a>
+                    <a href="">شرایط استفاده</a>
+                    <a href="">حریم خصوصی</a>
+                    <a href="">گزارش باگ</a>
+                </div>
+                <div class="group">
+                    <h6 class="title">راهنمای خرید</h6>
+                    <a href="">نحوه ثبت سفارش</a>
+                    <a href="">رویه ارسال سفارش</a>
+                    <a href="">شهیوه های پرداخت</a>
+                </div>
+                <div class="group">
+                    <h6 class="title">ارتباط با ما</h6>
+                    <a href="">ایمیل : mahdi.seri333@gmail.com</a>
+                    <a href="">اینستاگرام : @mahdixjfr</a>
+                    <a href="">شماره تماس : 09927400445</a>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-
-
 </body>
 
 </html>

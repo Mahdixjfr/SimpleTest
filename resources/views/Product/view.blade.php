@@ -77,7 +77,7 @@
             <div class="comment">
                 <div class="header-comment">
                     <h6>{{$comment->user()->first()->name}}</h6>
-                    <span class="time">{{$comment->updated_at}}</span>
+                    <span class="time">{{$comment->created_at->diffForHumans()}}</span>
                 </div>
                 <div class="body-comment">
                     <p class="comment-text">{{$comment->comment}}</p>

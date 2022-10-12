@@ -8,11 +8,14 @@
 <div class="delivered-orders">
     <div class="delivered-date">
         <p class="inf">وضعیت : دریافت شده <i id="check-icon" class="fa-regular fa-circle-check fa-2x"></i></p>
-        <p class="inf">{{$delivereds[0]->created_at}}</p>
+        @php
+        use Carbon\Carbon;
+        @endphp
+        <p class="inf">{{$delivereds[0]->updated_at->diffForHumans()}}</p>
     </div>
     @foreach($delivereds as $delivered)
     <div class="delivered">
-        <a href="" class="delivered-img"><img class="img" src="/storage/photo/{{$delivered->product()->first()->photo}}" alt=""></a>
+        <a href="{{ route('product' , ['product' => $delivered->product()->first()->id]) }}" class="delivered-img"><img class="img" src="/storage/photo/{{$delivered->product()->first()->photo}}" alt=""></a>
         <div class="delivered-inf">
             @php
             $product = $delivered->product()->first();

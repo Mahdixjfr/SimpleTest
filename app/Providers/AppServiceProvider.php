@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Cart;
 use App\Models\Category;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,6 +28,17 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
-        view()->share('categories', Category::all());
+        view()->composer('*', function ($view) {
+            $header_carts = Cart::where('user_id', Auth::user()->id)->get();
+            $view->with([
+                'header_carts' =>  $header_carts,
+                "categories" => Category::all(),
+            ]);
+        });
+
+        // view()->share([
+        //     "categories" => Category::all(),
+        //     "header_carts" => $header_carts
+        // ]);
     }
 }

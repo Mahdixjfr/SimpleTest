@@ -30,7 +30,7 @@
         <div class="delivered">
             <div class="delivered-head">
                 <span class="price">{{$delivered['total']}} <span class="toman">تومان</span></span>
-                <span class="inf">{{$delivered['products'][0]->updated_at}}</span>
+                <span class="inf">{{$delivered['products'][0]->updated_at->diffForHumans()}}</span>
             </div>
             <div class="delivered-body">
                 @foreach($delivered['products'] as $value)

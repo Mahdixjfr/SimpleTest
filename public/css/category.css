@@ -57,7 +57,7 @@ a:hover {
 
 .card {
     width: 32%;
-    height: 19rem;
+    /* height: 19rem; */
     border-radius: 1.5rem;
     border: 1px solid var(--border-color);
     margin: 0.3rem;
@@ -69,6 +69,7 @@ a:hover {
 }
 
 .card-image {
+    padding: 0.5rem;
     width: 75%;
     height: 70%;
 }
@@ -84,6 +85,7 @@ a:hover {
 }
 
 .card-inf {
+    padding: 0.5rem;
     width: 90%;
     display: flex;
     flex-direction: column;
@@ -96,12 +98,13 @@ a:hover {
 
 .product-name {
     color: var(--color-primary);
-    font-weight: 500;
+    font-size: 1.05rem;
+    /* font-weight: 500; */
 }
 
 .product-price {
     align-self: flex-end;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--color-primary);
 }
 

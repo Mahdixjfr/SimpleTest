@@ -38,11 +38,9 @@
             <div class="card">
                 <p class="inf-item">خرید خود را نهایی کنید</p>
                 <p class="inf-item">جمع سبد خرید : <span class="price">{{$total}}</span> <span class="toman">تومان</span></p>
-                <form class="form-buy" method="POST" action="/cart">
-                    @csrf
-                    @method('post')
-                    <button class="btn-buy">خرید</button>
-                </form>
+                <div class="form-buy">
+                    <a href="{{ route('formBuy') }}" class="btn-buy center-t">خرید</a>
+                </div>
             </div>
         </div>
     </div>

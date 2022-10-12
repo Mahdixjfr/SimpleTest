@@ -30,7 +30,7 @@
 }
 
 .bg-image:hover {
-    filter: drop-shadow(0 0 0.5rem rgb(34, 33, 33) );
+    filter: drop-shadow(0 0 0.35rem rgb(34, 33, 33) );
 }
 
 .owl-stage-outer {
@@ -56,11 +56,14 @@
     margin: 0.5rem;
     padding: 0.5rem;
 }
+
+
 .carousel-name {
     align-self: flex-start;
     color: var(--color-primary);
-    font-size: 1.3rem;
+    font-size: 1.05rem;
     font-weight: 550;
+    margin-bottom: 0.5rem;
 }
 .carousel-price {
     align-self: flex-end;
@@ -92,4 +95,5 @@
 .product-link {
     width: 85% !important;
     height:80%;
+    margin-bottom: 1.5rem;
 }

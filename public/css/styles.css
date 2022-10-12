@@ -47,11 +47,38 @@ a:hover {
     margin-bottom : 1rem; 
 }
 
-.footer {
+footer {
     grid-area: footer;
-    border-radius: 3rem;
-    background-color: var(--color-primary);
+    padding: 1rem 2rem 0;
 }
+
+.head-footer {
+    display: flex;
+    flex-direction: row;
+}
+
+.body-footer {
+    padding: 1rem 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.group a {
+    margin: 0.5rem;
+    color: rgb(145, 137, 137);
+}
+
+.group h6 {
+    align-self: center;
+}
+
 h1 {
     margin: 0;
     font-size: 2.5rem;
@@ -65,6 +92,10 @@ h2,h3,h4,h6 {
 
 .star {
     color: var(--color-secondary);
+}
+
+.search-form {
+    margin: 0;
 }
 
 header {
@@ -100,6 +131,10 @@ header::after {
 
 .header-title:hover :last-child {
     color: var(--color-accet);
+}
+
+.head-footer .header-title:hover :last-child {
+    color: var(--color-primary);
 }
 
 label {
@@ -247,6 +282,134 @@ label {
     transform: scale(1.1);
 }
 
+.dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+  }
+  
+  .cart-div {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    border-radius: 1rem;
+    flex-direction: column;
+    width: 28vw;
+    background-color: var(--color-accet);
+    left: 0;
+    position: absolute;
+    padding:  0.5rem 0;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    
+  }
+  
+  .cart-div:hover .dropdown-content {display: block;}
+
+  .cart-div {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .inf-box h6 {
+    margin: 0 0 1rem 0;
+  }
+
+  .carts-box {
+    height: 28vh;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cart-box {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .cart-box > :first-child {
+    width: 35%;
+  }
+
+  .cart-box > :last-child {
+    width: 65%;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .cart-group {
+    width: 50%;
+    margin: 0.2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cart-group p {
+    margin-bottom: 0.5rem;
+    align-self: flex-end;
+    margin-left: 10%;
+    font-size: 0.9rem;
+  }
+
+  .cart-group p .price , .cart-div .buy-box-h p .price{
+    font-size: 1rem;
+    margin: 0 0.2rem;
+  }
+
+  .cart-group button {
+    font-size: 0.9rem;
+  }
+
+
+  .img-box-h {
+    padding: 0.5rem;
+    width: 100%;
+  }
+
+  .inf-box-h {
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dropdown-content > a {
+    transform: translateX(3rem);
+    margin-left: 0.7rem;
+    text-align: end;
+  }
+  .cart-box:hover .dropdown-content {
+    display: block;
+  }
+
+  .cart-div .buy-box-h {
+    display: flex;
+    flex-direction: row;
+    padding:  1rem;
+    justify-content: space-between;
+  }
+
+  .cart-div .buy-box-h p {
+    margin: 0;
+  }
+
+  .buy-carts {
+    border: none;
+    background-color: var(--color-secondary);
+    color: var(--color-accet);
+    border-radius: 1rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .buy-carts:hover {
+    color: var(--color-accet);
+  }
+
 #user:hover {
     transform: scale(1.4);
 }
@@ -257,11 +420,12 @@ label {
 }
 
 .price {
-    font-size: 1.3rem;
+    font-size: 1.15rem;
     font-weight: 600;
 }
 
 .title {
+    text-align: start;
     margin: 1rem;
 }
 
@@ -387,6 +551,29 @@ label {
     width: 90%;
     border-radius: 1rem;
     color: var(--color-secondary);
+}
+
+.end-w {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.change {
+    color: var(--color-secondary);
+    margin: 0.5rem 0.8rem;
+}
+
+.btn-delete {
+    border: 1px solid var(--color-secondary);
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-accet);
+    color: var(--color-primary);
+}
+
+.btn-delete:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-accet);
 }
 /*  */
 
