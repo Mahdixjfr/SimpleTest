@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     @yield('css_links')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script src="/js/owlcarousel/dist/owl.carousel.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
@@ -36,9 +36,9 @@
                         </a>
                     </div>
                     <div class="search">
-                        <form class="search-form" action="" method="get">
+                        <form class="search-form" action="" method="POST">
                             <button class="search-btn" type="submit"><i class=" fa-solid fa-magnifying-glass"></i></button>
-                            <input id="search" type="text" name="search" placeholder="جستجو" class="input-search">
+                            <input id="search" name="search" type="text" placeholder="جستجو" class="input-search">
                         </form>
                     </div>
                     <div class="cart-user">
@@ -178,7 +178,7 @@
                     <h6 class="title">راهنمای خرید</h6>
                     <a href="">نحوه ثبت سفارش</a>
                     <a href="">رویه ارسال سفارش</a>
-                    <a href="">شهیوه های پرداخت</a>
+                    <a href="">شیوه های پرداخت</a>
                 </div>
                 <div class="group">
                     <h6 class="title">ارتباط با ما</h6>
@@ -192,6 +192,32 @@
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<script>
+$(document).ready(function(){
+    function fetch_customer_data(query)
+    {
+        $.ajax({
+            url : "{{ route('search') }}",
+            method : 'GET',
+            data : {query:query},
+            dataType : 'json',
+            success : function(data)
+            {
+                console.log(data);
+            }
+        });
+    }
+
+    $(document).on('keyup' , '#search' , function(){
+        var query = $(this).val();
+        fetch_customer_data(query);
+    });
+});
+</script>
+
 </body>
 
 </html>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/search', function () {
+    if (request('query') != '') {
+        $products = Product::where('name','LIKE','%'.request('query').'%')->take(6)->get();
+        return response()->json(['data' => $products]);
+    }
+
+})->name('search');
