@@ -210,6 +210,6 @@
 
 #icon {
     color: var(--input-color);
-    text-shadow: 1rem 1rem 1rem #ccc;
+    text-shadow: 0.5rem 0.5rem 0.5rem #ccc;
     /* filter: drop-shadow(1rem 1rem 1rem #ccc); */
 }
