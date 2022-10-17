@@ -69,6 +69,7 @@ Route::middleware('auth')->controller(SellerController::class)->prefix('seller')
     Route::get('/register', 'showRegisterationForm')->name('showRegisterSeller');
     Route::post('/', 'register')->name('registerSeller');
     Route::get('/create', 'store')->name('formCreateProduct');
+    Route::post('/upload', 'uploadImg')->name('uploadImg');
     Route::post('/create', 'create')->name('createProduct');
 });
 Auth::routes();

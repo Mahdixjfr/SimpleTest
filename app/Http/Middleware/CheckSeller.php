@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Enums\UserType;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class CheckSeller
     public function handle(Request $request, Closure $next)
     {
         $user = findUser(userId());
-        if ($user->type == 'seller') {
+        if ($user->type == UserType::Seller) {
             return $next($request);
         } else {
             return redirect('/');

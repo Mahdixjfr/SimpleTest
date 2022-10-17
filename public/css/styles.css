@@ -149,12 +149,11 @@ label {
     outline: 0;
     padding: 0.5rem 0.7rem;
     border-radius: 1.5rem;
-    border: 1px solid #5549b0;
-    z-index: 2;
+    border: 1px solid var(--input-color);
     color: var(--color-primary);
 }
 
-.input-form:hover , .input-form:focus {
+.input-form:hover , .input-form:focus ,textarea:hover , textarea:focus{
     box-shadow: 0 0 0.5rem rgb(158, 149, 149);
 }
 
@@ -432,11 +431,37 @@ label {
 .center-d {
     display: flex;
     justify-content: center;
-    align-items: centers;
+    align-items: center;
 }
 
 .center-t {
     text-align: center;
+}
+
+.f-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.f-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.center-j {
+    justify-content: center;
+}
+
+.center-a {
+    align-items: center;
+}
+
+.around-row-j {
+    justify-content: space-around;
+}
+
+.around-row-a {
+    align-items: space-around;
 }
 
 .inf {

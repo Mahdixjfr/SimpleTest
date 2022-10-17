@@ -28,17 +28,17 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
-        view()->composer('*', function ($view) {
-            $header_carts = Cart::where('user_id', Auth::user()->id)->get();
-            $view->with([
-                'header_carts' =>  $header_carts,
-                "categories" => Category::all(),
-            ]);
-        });
-
-        // view()->share([
-        //     "categories" => Category::all(),
-        //     "header_carts" => $header_carts
-        // ]);
+        // if (Auth::check() == true) {
+        //     view()->composer('*', function ($view) {
+        //         $header_carts = Cart::where('user_id', Auth::user()->id)->get();
+        //         $view->with([
+        //             'header_carts' =>  $header_carts,
+        //             "categories" => Category::all(),
+        //         ]);
+        //     });
+        // }
+        view()->share([
+            "categories" => Category::all(),
+        ]);
     }
 }

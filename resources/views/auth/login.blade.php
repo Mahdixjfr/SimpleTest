@@ -12,7 +12,7 @@
         <div class="shape login-shape-one shape-one"></div>
         <div class="shape login-shape-two shape-two"></div>
         <h2 class="title">ورود</h2>
-        <div>
+        <div class="input-div">
             <label for="">ایمیل :</label>
             <input type="email" class="input-form @error('email') is-invalid @enderror" name="email">
             <div class="invalid-feedback center-t">
@@ -21,7 +21,7 @@
                 @enderror
             </div>
         </div>
-        <div>
+        <div class="input-div">
             <label for="">رمز ورود :</label>
             <input type="password" class="input-form @error('password') is-invalid @enderror" name="password">
             <div class="invalid-feedback center-t">

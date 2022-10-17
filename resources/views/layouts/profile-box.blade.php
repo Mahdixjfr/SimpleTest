@@ -64,14 +64,19 @@
                             </div>
                         </div>
                         <div class="cart-icon">
-                            <!-- <i id="cart-icon" class="fa-solid fa-cart-shopping fa-2x"></i> -->
                             <div class="cart-div">
-                                <button class="dropbtn">Dropdown</button>
+                                <i id="cart-icon" class="fa-solid fa-cart-shopping fa-2x"></i>
+                                <!-- <button class="dropbtn">Dropdown</button> -->
                                 <div class="dropdown-content">
                                     <a href="{{ route('cart') }}">مشاهده سبد خرید</a>
                                     <div class="carts-box">
                                         @php
                                         $total = 0;
+                                        $header_carts = [];
+                                        if(auth()->check() == true)
+                                        {
+                                        $header_carts = App\Models\Cart::where('user_id', Auth::user()->id)->get();
+                                        }
                                         @endphp
                                         @foreach($header_carts as $header_cart)
                                         @php
